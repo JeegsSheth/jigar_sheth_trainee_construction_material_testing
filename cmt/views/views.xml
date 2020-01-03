@@ -1,0 +1,51 @@
+<odoo>
+  <data>
+
+    <record model="ir.ui.view" id="laboratory_registration_form">
+      <field name="name">laboratory.registration.form</field>
+      <field name="model">laboratory.registration</field>
+      <field name="arch" type="xml">
+        <form string="Lab Registration Form">
+          <sheet>
+            <group>
+              <field name="name"/>
+              <field name="labcontact"/>
+              <field name="labemail"/>
+              <field name="username"/>
+              <field name="password"/>
+            </group>
+            <group>
+              <field name="labaddress"/>
+              <field name="city"/>
+              <field name="district"/>
+              <field name="state"/>
+              <field name="pincode"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="laboratory_registration_tree">
+      <field name="name">laboratory.registration.tree</field>
+      <field name="model">laboratory.registration</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="city"/>
+          <field name="state"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="laboratory_registration_window">
+      <field name="name">laboratory.registration.window</field>
+      <field name="res_model">laboratory.registration</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem name="CMT" id="cmt_menu_root"/>
+    <menuitem name="Lab Registration" id="laboratory_registration_menu" parent="cmt_menu_root" action="laboratory_registration_window"/>
+    
+  </data>
+</odoo>
