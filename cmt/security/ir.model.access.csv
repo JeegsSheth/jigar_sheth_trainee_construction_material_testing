@@ -1,1 +1,4 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_laboratory_registration,access_laboratory_registration,model_laboratory_registration,base.group_user,1,1,1,1
+access_builder_registration,access_builder_registration,model_builder_registration,base.group_user,1,1,1,1
+access_laboratory_facility,access_laboratory_facility,model_laboratory_facility,base.group_user,1,1,1,1

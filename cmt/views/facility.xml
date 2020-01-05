@@ -1,0 +1,42 @@
+<odoo>
+  <data>
+
+    <record model="ir.ui.view" id="laboratory_facility_form">
+      <field name="name">laboratory.facility.form</field>
+      <field name="model">laboratory.facility</field>
+      <field name="arch" type="xml">
+        <form string="Lab facility Form">
+          <sheet>
+            <group>
+              <field name="name"/>
+              <field name="labid"/>
+              <field name="price"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="laboratory_facility_tree">
+      <field name="name">laboratory.facility.tree</field>
+      <field name="model">laboratory.facility</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="labid"/>
+          <field name="price"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="laboratory_facility_window">
+      <field name="name">laboratory.facility.window</field>
+      <field name="res_model">laboratory.facility</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem name="CMT" id="cmt_menu_root"/>
+    <menuitem name="Facility" id="laboratory_facility_menu" parent="cmt_menu_root" action="laboratory_facility_window"/>
+    
+  </data>
+</odoo>

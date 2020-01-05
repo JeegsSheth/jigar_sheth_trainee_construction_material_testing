@@ -1,7 +1,8 @@
 <odoo>
     <data>
 <!--
-          <record id="object1" model="cmt.cmt">
+          <record id="object1" model="cmt.
+          ">
             <field name="name">Object 1</field>
             <field name="value">10</field>
           </record>
@@ -20,6 +21,8 @@
             <field name="name">Object 4</field>
             <field name="value">40</field>
           </record>
+
 -->
+    
     </data>
 </odoo>
