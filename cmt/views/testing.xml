@@ -1,0 +1,61 @@
+<odoo>
+	<data>
+
+		<record model="ir.ui.view" id="laboratory_testing_form">
+	      <field name="name">laboratory.testing.form</field>
+	      <field name="model">laboratory.testing</field>
+	      <field name="arch" type="xml">
+	        <form string="Lab Testing Form">
+                <header>
+                    <button name="action_inprogress" states="todo,completed" string="In Progress" type="object"/>
+                    <button name="action_completed" states="todo,inprogress" string="Completed" type="object"/>
+                    <button name="action_todo" states="completed" string="To Do" type="object"/>
+                    <field name="state" widget="statusbar" statusbar_visible="todo,inprogress,completed"/>
+                </header>
+	          <sheet>
+	            <group>
+	              <field name="builderid"/>
+	              <field name="labid"/>
+	              <field name="testingstart"/>
+                  <field name="testingend"/>
+	            </group>
+	          </sheet>
+	        </form>
+	      </field>
+	    </record>
+
+        <record model="ir.ui.view" id="laboratory_testing_tree">
+          <field name="name">laboratory.testing.tree</field>
+          <field name="model">laboratory.testing</field>
+          <field name="arch" type="xml">
+            <tree string="Lab Testing">
+                <field name="builderid"/>
+                <field name="labid"/>
+                <field name="testingstart"/>
+                <field name="testingend"/>
+            </tree>
+          </field>
+        </record>
+
+        <record model="ir.ui.view" id="laboratory_testing_calendar">
+          <field name="name">laboratory.testing.calendar</field>
+          <field name="model">laboratory.testing</field>
+          <field name="arch" type="xml">
+            <calendar string="Testing Duration" date_start="testingstart" date_stop="testingend" color="builderid">
+                <field name="builderid"/> 
+                <field name="labid"/> 
+                <field name="testingstart"/>
+                <field name="testingend"/>
+            </calendar>
+        </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="laboratory_testing_window">
+          <field name="name">laboratory.testing.window</field>
+          <field name="res_model">laboratory.testing</field>
+          <field name="view_mode">tree,form,calendar</field>
+        </record>
+
+        <menuitem name="Testing" id="laboratory_testing_menu" parent="cmt_menu_root" action="laboratory_testing_window"/>
+	</data>
+</odoo>

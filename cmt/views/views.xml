@@ -11,8 +11,6 @@
               <field name="name"/>
               <field name="labcontact"/>
               <field name="labemail"/>
-              <field name="username"/>
-              <field name="password"/>
             </group>
             <group>
               <field name="labaddress"/>

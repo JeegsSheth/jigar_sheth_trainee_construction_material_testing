@@ -12,8 +12,6 @@
               <field name="buildercompname"/>
               <field name="buildercontact"/>
               <field name="builderemail"/>
-              <field name="username"/>
-              <field name="password"/>
             </group>
             <group>
               <field name="buildercompaddress"/>

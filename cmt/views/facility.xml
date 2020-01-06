@@ -21,7 +21,7 @@
       <field name="name">laboratory.facility.tree</field>
       <field name="model">laboratory.facility</field>
       <field name="arch" type="xml">
-        <tree>
+        <tree string="Lab Facilities" decoration-success="name=='cementtest'" decoration-info="name=='soiltest'" decoration-danger="name=='fieldtest'" decoration-warning="name=='steeltest'"  decoration-primary="name=='concretetest'">
           <field name="name"/>
           <field name="labid"/>
           <field name="price"/>
@@ -29,10 +29,22 @@
       </field>
     </record>
 
+    <record model="ir.ui.view" id="laboratory_facility_graph">
+      <field name="name">laboratory.facility.graph</field>
+      <field name="model">laboratory.facility</field>
+      <field name="arch" type="xml">
+        <graph string="Facility Graph" type="line">
+          <field name="name"/>
+          <field name="labid"/>
+          <field name="price" type="measure"/>
+        </graph>
+      </field>
+    </record>
+
     <record model="ir.actions.act_window" id="laboratory_facility_window">
       <field name="name">laboratory.facility.window</field>
       <field name="res_model">laboratory.facility</field>
-      <field name="view_mode">tree,form</field>
+      <field name="view_mode">tree,form,graph</field>
     </record>
 
     <menuitem name="CMT" id="cmt_menu_root"/>

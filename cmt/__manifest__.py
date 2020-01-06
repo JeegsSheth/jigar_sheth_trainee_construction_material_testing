@@ -28,6 +28,7 @@
         'views/views.xml',
         'views/builder.xml',
         'views/facility.xml',
+        'views/testing.xml'
         # 'views/templates.xml',
     ],
     # only loaded in demonstration mode
