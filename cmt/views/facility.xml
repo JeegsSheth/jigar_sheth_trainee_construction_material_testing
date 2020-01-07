@@ -55,10 +55,28 @@
         </field>
     </record>
 
+    <record id="laboratory_facility_kanban" model="ir.ui.view">
+        <field name="name">laboratory.facility.kanban</field>
+        <field name="model">laboratory.facility</field>
+        <field name="arch" type="xml">
+          <kanban class="o_kanban_dashboard" widget="color">
+            <templates>
+              <t t-name="kanban-box">
+                <div t-attf-class="oe_kanban_content">
+                  <field name="name"/>
+                  <field name="labid"/>
+                  <field name="price"/>
+                </div>
+              </t>
+            </templates>
+          </kanban>
+        </field>
+    </record>
+
     <record model="ir.actions.act_window" id="laboratory_facility_window">
       <field name="name">laboratory.facility.window</field>
       <field name="res_model">laboratory.facility</field>
-      <field name="view_mode">tree,form,graph</field>
+      <field name="view_mode">tree,form,graph,kanban</field>
     </record>
 
     <menuitem name="CMT" id="cmt_menu_root"/>
