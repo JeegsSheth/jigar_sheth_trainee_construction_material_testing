@@ -7,17 +7,17 @@
 	      <field name="arch" type="xml">
 	        <form string="Lab Testing Form">
                 <header>
-                    <button name="action_inprogress" states="todo,completed" string="In Progress" type="object"/>
-                    <button name="action_completed" states="todo,inprogress" string="Completed" type="object"/>
-                    <button name="action_todo" states="completed" string="To Do" type="object"/>
-                    <field name="state" widget="statusbar" statusbar_visible="todo,inprogress,completed"/>
+                    <button name="action_inprogress" states="todo,completed" string="In Progress" type="object" class="btn-danger"/>
+                    <button name="action_completed" states="todo,inprogress" string="Completed" type="object" class="btn-success"/>
+                    <button name="action_todo" states="completed" string="To Do" type="object" class="btn-dark"/>
+                    <field name="state" widget="statusbar" statusbar_visible="todo,inprogress,completed" clickable="True"/>
                 </header>
 	          <sheet>
 	            <group>
 	              <field name="builderid"/>
 	              <field name="labid"/>
 	              <field name="testingstart"/>
-                  <field name="testingend"/>
+                <field name="testingend"/>
 	            </group>
 	          </sheet>
 	        </form>
@@ -41,9 +41,9 @@
           <field name="name">laboratory.testing.calendar</field>
           <field name="model">laboratory.testing</field>
           <field name="arch" type="xml">
-            <calendar string="Testing Duration" date_start="testingstart" date_stop="testingend" color="builderid">
-                <field name="builderid"/> 
-                <field name="labid"/> 
+            <calendar string="Testing Duration" date_start="testingstart" date_stop="testingend" color="labid">
+                <field name="labid"/>
+                <field name="builderid"/>  
                 <field name="testingstart"/>
                 <field name="testingend"/>
             </calendar>

@@ -32,9 +32,22 @@
         <tree>
           <field name="name"/>
           <field name="city"/>
+          <field name="district"/>
           <field name="state"/>
         </tree>
       </field>
+    </record>
+
+    <record id="builder_registration_search" model="ir.ui.view">
+        <field name="name">builder.registration.search</field>
+        <field name="model">builder.registration</field>
+        <field name="arch" type="xml">
+            <search string="Builder Search">
+                <filter name="my_ideas" string="Mumbai" domain="[('city', '=', 'Mumbai')]"/>
+                <field name="city" filter_domain="[('city','not ilike',self),('district','not ilike',self)]"/>
+                <!-- <field name="city" filter_domain="['|',('city','ilike',self),('district','ilike',self)]"/> -->
+            </search>
+        </field>
     </record>
 
     <record model="ir.actions.act_window" id="builder_registration_window">

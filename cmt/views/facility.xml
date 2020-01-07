@@ -41,6 +41,20 @@
       </field>
     </record>
 
+    <record id="laboratory_facility_search" model="ir.ui.view">
+        <field name="name">laboratory.facility.search</field>
+        <field name="model">laboratory.facility</field>
+        <field name="arch" type="xml">
+            <search string="Facility Search">
+                <field name="name" widget="selection"/>
+                <group string="Group By">
+                  <filter name="group_by_facility" string="Facility" context="{'group_by': 'name'}"/>
+                  <filter name="group_by_facility" string="Lab" context="{'group_by': 'labid'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
     <record model="ir.actions.act_window" id="laboratory_facility_window">
       <field name="name">laboratory.facility.window</field>
       <field name="res_model">laboratory.facility</field>
