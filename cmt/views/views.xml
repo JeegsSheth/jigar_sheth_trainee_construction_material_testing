@@ -1,16 +1,32 @@
 <odoo>
   <data>
 
-    <record model="ir.ui.view" id="laboratory_registration_form">
-      <field name="name">laboratory.registration.form</field>
-      <field name="model">laboratory.registration</field>
+    <record model="ir.ui.view" id="laboratory_detail_tree_view">
+      <field name="name">laboratory.detail.tree</field>
+      <field name="model">laboratory.detail</field>
       <field name="arch" type="xml">
-        <form string="Lab Registration Form">
+        <tree decoration-success="name=='cementtest'" decoration-info="name=='soiltest'" decoration-danger="name=='fieldtest'" decoration-warning="name=='steeltest'"  decoration-primary="name=='concretetest'">
+          <field name="name"/>
+          <field name="facilityname"/>
+          <field name="price"/>
+          <field name="city"/>
+          <field name="state"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="laboratory_detail_form_view">
+      <field name="name">laboratory.detail.form</field>
+      <field name="model">laboratory.detail</field>
+      <field name="arch" type="xml">
+        <form string="Lab detail Form">
           <sheet>
             <group>
               <field name="name"/>
               <field name="labcontact"/>
               <field name="labemail"/>
+              <field name="facilityname"/>
+              <field name="price"/>
             </group>
             <group>
               <field name="labaddress"/>
@@ -24,26 +40,170 @@
       </field>
     </record>
 
-    <record model="ir.ui.view" id="laboratory_registration_tree">
-      <field name="name">laboratory.registration.tree</field>
-      <field name="model">laboratory.registration</field>
+    <record id="laboratory_detail_kanban_view" model="ir.ui.view">
+        <field name="name">laboratory.detail.kanban</field>
+        <field name="model">laboratory.detail</field>
+        <field name="arch" type="xml">
+          <kanban default_group_by="district" class="o_kanban_dashboard" widget="color">
+            <templates>
+              <t t-name="kanban-box">
+                <div t-attf-class="oe_kanban_content">
+                  <field name="name"/>
+                  <field name="facilityname"/>
+                  <field name="price"/>
+                </div>
+              </t>
+            </templates>
+          </kanban>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="laboratory_detail_graph_view">
+      <field name="name">laboratory.detail.graph</field>
+      <field name="model">laboratory.detail</field>
+      <field name="arch" type="xml">
+        <graph string="Lab Graph" type="line">
+          <field name="facilityname"/>
+          <field name="name"/>
+          <field name="price" type="measure"/>
+        </graph>
+      </field>
+    </record>
+
+    <record id="laboratory_detail_search_view" model="ir.ui.view">
+        <field name="name">laboratory.detail.search</field>
+        <field name="model">laboratory.detail</field>
+        <field name="arch" type="xml">
+            <search string="Lab Search">
+                <field name="name" widget="selection"/>
+                <group string="Group By">
+                  <filter name="group_by_facility" string="Lab" context="{'group_by': 'name'}"/>
+                  <filter name="group_by_facility" string="Facility" context="{'group_by': 'facilityname'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="builder_detail_tree_view">
+      <field name="name">builder.detail.tree</field>
+      <field name="model">builder.detail</field>
       <field name="arch" type="xml">
         <tree>
           <field name="name"/>
           <field name="city"/>
+          <field name="district"/>
           <field name="state"/>
         </tree>
       </field>
     </record>
 
-    <record model="ir.actions.act_window" id="laboratory_registration_window">
-      <field name="name">laboratory.registration.window</field>
-      <field name="res_model">laboratory.registration</field>
+    <record model="ir.ui.view" id="builder_detail_form_view">
+      <field name="name">builder.detail.form</field>
+      <field name="model">builder.detail</field>
+      <field name="arch" type="xml">
+        <form string="Lab detail Form">
+          <sheet>
+            <group>
+              <field name="name"/>
+              <field name="buildercompname"/>
+              <field name="buildercontact"/>
+              <field name="builderemail"/>
+            </group>
+            <group>
+              <field name="buildercompaddress"/>
+              <field name="city"/>
+              <field name="district"/>
+              <field name="state"/>
+              <field name="pincode"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record id="builder_detail_search_view" model="ir.ui.view">
+        <field name="name">builder.detail.search</field>
+        <field name="model">builder.detail</field>
+        <field name="arch" type="xml">
+            <search string="Builder Search">
+                <filter name="my_ideas" string="Mumbai" domain="[('city', '=', 'Mumbai')]"/>
+                <!-- <field name="city" filter_domain="[('city','not ilike',self),('district','not ilike',self)]"/> -->
+                <field name="city" filter_domain="['|',('city','ilike',self),('district','ilike',self)]"/>
+            </search>
+        </field>
+    </record>
+
+     <record model="ir.ui.view" id="laboratory_testing_status_tree_view">
+          <field name="name">laboratory.testing.status.tree</field>
+          <field name="model">laboratory.testing.status</field>
+          <field name="arch" type="xml">
+            <tree string="Lab Testing">
+                <field name="builderid"/>
+                <field name="labid"/>
+                <field name="testingstart"/>
+                <field name="testingend"/>
+            </tree>
+          </field>
+        </record>
+
+      <record model="ir.ui.view" id="laboratory_testing_status_form_view">
+        <field name="name">laboratory.testing.status.form</field>
+        <field name="model">laboratory.testing.status</field>
+        <field name="arch" type="xml">
+          <form string="Lab Testing Form">
+                <header>
+                    <button name="action_inprogress" states="todo,completed" string="In Progress" type="object" class="btn-danger"/>
+                    <button name="action_completed" states="todo,inprogress" string="Completed" type="object" class="btn-success"/>
+                    <button name="action_todo" states="completed" string="To Do" type="object" class="btn-dark"/>
+                    <field name="state" widget="statusbar" statusbar_visible="todo,inprogress,completed" clickable="True"/>
+                </header>
+            <sheet>
+              <group>
+                <field name="builderid"/>
+                <field name="labid"/>
+                <field name="testingstart"/>
+                <field name="testingend"/>
+              </group>
+            </sheet>
+          </form>
+        </field>
+      </record>
+
+        <record model="ir.ui.view" id="laboratory_testing_status_calendar_view">
+          <field name="name">laboratory.testing.status.calendar</field>
+          <field name="model">laboratory.testing.status</field>
+          <field name="arch" type="xml">
+            <calendar string="Testing Duration" date_start="testingstart" date_stop="testingend" color="labid">
+                <field name="labid"/>
+                <field name="builderid"/>  
+                <field name="testingstart"/>
+                <field name="testingend"/>
+            </calendar>
+        </field>
+        </record>
+
+    <record model="ir.actions.act_window" id="laboratory_detail_action">
+      <field name="name">laboratory.detail.window</field>
+      <field name="res_model">laboratory.detail</field>
+      <field name="view_mode">tree,form,kanban,graph</field>
+    </record>
+
+    <record model="ir.actions.act_window" id="builder_detail_action">
+      <field name="name">builder.detail.window</field>
+      <field name="res_model">builder.detail</field>
       <field name="view_mode">tree,form</field>
     </record>
 
+    <record model="ir.actions.act_window" id="laboratory_testing_status_action">
+      <field name="name">laboratory.testing.status.window</field>
+      <field name="res_model">laboratory.testing.status</field>
+      <field name="view_mode">tree,form,calendar</field>
+    </record>
+
     <menuitem name="CMT" id="cmt_menu_root"/>
-    <menuitem name="Lab Registration" id="laboratory_registration_menu" parent="cmt_menu_root" action="laboratory_registration_window"/>
-    
+    <menuitem name="Lab" id="laboratory_detail_menu" parent="cmt_menu_root" action="laboratory_detail_action"/>
+    <menuitem name="Builder" id="builder_detail_menu" parent="cmt_menu_root" action="builder_detail_action"/>
+    <menuitem name="Status" id="laboratory_testing_status_menu" parent="cmt_menu_root" action="laboratory_testing_status_action"/>
+
   </data>
 </odoo>
