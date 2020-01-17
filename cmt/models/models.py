@@ -7,7 +7,7 @@ class LaboratoryDetail(models.Model):
     _description = 'Laboratory Detail'
 
     name = fields.Char(string="Laboratory Name", required=True)
-    labaddress = fields.Char(string="Company Address", required=True)
+    labaddress = fields.Char(string="Laboratory Address", required=True)
     labcontact = fields.Char(string="Contact No.", required=True)
     labemail = fields.Char(string="E-Mail Address", required=True)
     city = fields.Char(string="City", required=True)

@@ -155,6 +155,7 @@
                     <button name="action_inprogress" states="todo,completed" string="In Progress" type="object" class="btn-danger"/>
                     <button name="action_completed" states="todo,inprogress" string="Completed" type="object" class="btn-success"/>
                     <button name="action_todo" states="completed" string="To Do" type="object" class="btn-dark"/>
+                    <!-- <button name="%(laboratory_detail_action)d" string="Dem" type="action" class="btn-dark"/> -->
                     <field name="state" widget="statusbar" statusbar_visible="todo,inprogress,completed" clickable="True"/>
                 </header>
             <sheet>
