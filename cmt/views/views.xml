@@ -1,56 +1,50 @@
 <odoo>
   <data>
 
-    <record model="ir.ui.view" id="laboratory_detail_tree_view">
-      <field name="name">laboratory.detail.tree</field>
-      <field name="model">laboratory.detail</field>
+    <record model="ir.ui.view" id="customer_detail_tree_view">
+      <field name="name">customer.detail.tree</field>
+      <field name="model">customer.detail</field>
       <field name="arch" type="xml">
         <tree decoration-success="name=='cementtest'" decoration-info="name=='soiltest'" decoration-danger="name=='fieldtest'" decoration-warning="name=='steeltest'"  decoration-primary="name=='concretetest'">
           <field name="name"/>
           <field name="facilityname"/>
-          <field name="price"/>
-          <field name="city"/>
-          <field name="state"/>
+          <field name="contact"/>         
+          <field name="email"/>
         </tree>
       </field>
     </record>
 
-    <record model="ir.ui.view" id="laboratory_detail_form_view">
-      <field name="name">laboratory.detail.form</field>
-      <field name="model">laboratory.detail</field>
+    <record model="ir.ui.view" id="customer_detail_form_view">
+      <field name="name">customer.detail.form</field>
+      <field name="model">customer.detail</field>
       <field name="arch" type="xml">
-        <form string="Lab detail Form">
+        <form string="Customer detail Form">
           <sheet>
             <group>
               <field name="name"/>
-              <field name="labcontact"/>
-              <field name="labemail"/>
-              <field name="facilityname"/>
-              <field name="price"/>
+              <field name="contact"/>
+              <field name="email"/>    
             </group>
             <group>
-              <field name="labaddress"/>
-              <field name="city"/>
-              <field name="district"/>
-              <field name="state"/>
-              <field name="pincode"/>
+              <field name="facilityname"/>
             </group>
           </sheet>
         </form>
       </field>
     </record>
 
-    <record id="laboratory_detail_kanban_view" model="ir.ui.view">
-        <field name="name">laboratory.detail.kanban</field>
-        <field name="model">laboratory.detail</field>
+    <record id="customer_detail_kanban_view" model="ir.ui.view">
+        <field name="name">customer.detail.kanban</field>
+        <field name="model">customer.detail</field>
         <field name="arch" type="xml">
-          <kanban default_group_by="district" class="o_kanban_dashboard" widget="color">
+          <kanban default_group_by="facilityname" class="o_kanban_dashboard" widget="color">
             <templates>
               <t t-name="kanban-box">
                 <div t-attf-class="oe_kanban_content">
                   <field name="name"/>
                   <field name="facilityname"/>
-                  <field name="price"/>
+                  <field name="contact"/>
+                  <field name="email"/>
                 </div>
               </t>
             </templates>
@@ -58,110 +52,63 @@
         </field>
     </record>
 
-    <record model="ir.ui.view" id="laboratory_detail_graph_view">
-      <field name="name">laboratory.detail.graph</field>
-      <field name="model">laboratory.detail</field>
+    <record model="ir.ui.view" id="customer_detail_graph_view">
+      <field name="name">customer.detail.graph</field>
+      <field name="model">customer.detail</field>
       <field name="arch" type="xml">
-        <graph string="Lab Graph" type="line">
-          <field name="facilityname"/>
+        <graph string="Customer Graph" type="line">
+          
           <field name="name"/>
-          <field name="price" type="measure"/>
+          <field name="facilityname"/>
         </graph>
       </field>
     </record>
 
-    <record id="laboratory_detail_search_view" model="ir.ui.view">
-        <field name="name">laboratory.detail.search</field>
-        <field name="model">laboratory.detail</field>
+    <record id="customer_detail_search_view" model="ir.ui.view">
+        <field name="name">customer.detail.search</field>
+        <field name="model">customer.detail</field>
         <field name="arch" type="xml">
-            <search string="Lab Search">
+            <search string="Customer Search">
                 <field name="name" widget="selection"/>
                 <group string="Group By">
-                  <filter name="group_by_facility" string="Lab" context="{'group_by': 'name'}"/>
+                  <filter name="group_by_facility" string="Customer" context="{'group_by': 'name'}"/>
                   <filter name="group_by_facility" string="Facility" context="{'group_by': 'facilityname'}"/>
                 </group>
             </search>
         </field>
     </record>
-
-    <record model="ir.ui.view" id="builder_detail_tree_view">
-      <field name="name">builder.detail.tree</field>
-      <field name="model">builder.detail</field>
-      <field name="arch" type="xml">
-        <tree>
-          <field name="name"/>
-          <field name="city"/>
-          <field name="district"/>
-          <field name="state"/>
-        </tree>
-      </field>
-    </record>
-
-    <record model="ir.ui.view" id="builder_detail_form_view">
-      <field name="name">builder.detail.form</field>
-      <field name="model">builder.detail</field>
-      <field name="arch" type="xml">
-        <form string="Lab detail Form">
-          <sheet>
-            <group>
-              <field name="name"/>
-              <field name="buildercompname"/>
-              <field name="buildercontact"/>
-              <field name="builderemail"/>
-            </group>
-            <group>
-              <field name="buildercompaddress"/>
-              <field name="city"/>
-              <field name="district"/>
-              <field name="state"/>
-              <field name="pincode"/>
-            </group>
-          </sheet>
-        </form>
-      </field>
-    </record>
-
-    <record id="builder_detail_search_view" model="ir.ui.view">
-        <field name="name">builder.detail.search</field>
-        <field name="model">builder.detail</field>
-        <field name="arch" type="xml">
-            <search string="Builder Search">
-                <filter name="my_ideas" string="Mumbai" domain="[('city', '=', 'Mumbai')]"/>
-                <!-- <field name="city" filter_domain="[('city','not ilike',self),('district','not ilike',self)]"/> -->
-                <field name="city" filter_domain="['|',('city','ilike',self),('district','ilike',self)]"/>
-            </search>
-        </field>
-    </record>
-
-     <record model="ir.ui.view" id="laboratory_testing_status_tree_view">
-          <field name="name">laboratory.testing.status.tree</field>
-          <field name="model">laboratory.testing.status</field>
+    
+     <record model="ir.ui.view" id="testing_detail_tree_view">
+          <field name="name">testing.detail.tree</field>
+          <field name="model">testing.detail</field>
           <field name="arch" type="xml">
             <tree string="Lab Testing">
-                <field name="builderid"/>
-                <field name="labid"/>
+                <field name="custid"/>
+                <field name="address"/>
+                <field name="facilityname"/>
                 <field name="testingstart"/>
                 <field name="testingend"/>
             </tree>
           </field>
         </record>
 
-      <record model="ir.ui.view" id="laboratory_testing_status_form_view">
-        <field name="name">laboratory.testing.status.form</field>
-        <field name="model">laboratory.testing.status</field>
+      <record model="ir.ui.view" id="testing_detail_form_view">
+        <field name="name">testing.detail.form</field>
+        <field name="model">testing.detail</field>
         <field name="arch" type="xml">
           <form string="Lab Testing Form">
                 <header>
                     <button name="action_inprogress" states="todo,completed" string="In Progress" type="object" class="btn-danger"/>
                     <button name="action_completed" states="todo,inprogress" string="Completed" type="object" class="btn-success"/>
                     <button name="action_todo" states="completed" string="To Do" type="object" class="btn-dark"/>
-                    <!-- <button name="%(laboratory_detail_action)d" string="Dem" type="action" class="btn-dark"/> -->
                     <field name="state" widget="statusbar" statusbar_visible="todo,inprogress,completed" clickable="True"/>
                 </header>
             <sheet>
               <group>
-                <field name="builderid"/>
-                <field name="labid"/>
+
+                <field name="custid"/>
+                <field name="address"/>
+                <field name="facilityname"/>
                 <field name="testingstart"/>
                 <field name="testingend"/>
               </group>
@@ -170,13 +117,14 @@
         </field>
       </record>
 
-        <record model="ir.ui.view" id="laboratory_testing_status_calendar_view">
-          <field name="name">laboratory.testing.status.calendar</field>
-          <field name="model">laboratory.testing.status</field>
+        <record model="ir.ui.view" id="testing_detail_calendar_view">
+          <field name="name">testing.detail.calendar</field>
+          <field name="model">testing.detail</field>
           <field name="arch" type="xml">
-            <calendar string="Testing Duration" date_start="testingstart" date_stop="testingend" color="labid">
-                <field name="labid"/>
-                <field name="builderid"/>  
+            <calendar string="Testing Duration" date_start="testingstart" date_stop="testingend" color="facilityname">
+                
+                <field name="custid"/>
+                <field name="facilityname"/>  
                 <field name="testingstart"/>
                 <field name="testingend"/>
             </calendar>
@@ -185,7 +133,7 @@
 
     <report
         id="report_status"
-        model="laboratory.testing.status"
+        model="testing.detail"
         string="Status Report"
         name="cmt.report_status_view"
         file="cmt.status"
@@ -200,12 +148,12 @@
                         <h1>JS Industry</h1><br/><br/>
                         <table width="30%">
                           <tr>
-                            <td>Lab Name :- </td>
-                            <td><span t-field="doc.labid"/></td>
+                            <td>Cust Name :- </td>
+                            <td><span t-field="doc.custid"/></td>
                           </tr>
                           <tr>
-                            <td>Builder Name :- </td>
-                            <td><span t-field="doc.builderid"/></td>
+                            <td>Address :- </td>
+                            <td><span t-field="doc.address"/></td>
                           </tr>
                           <tr>
                             <td>Testing Start Date :- </td>
@@ -228,28 +176,22 @@
     </template>
 
 
-    <record model="ir.actions.act_window" id="laboratory_detail_action">
-      <field name="name">laboratory.detail.window</field>
-      <field name="res_model">laboratory.detail</field>
+    <record model="ir.actions.act_window" id="customer_detail_action">
+      <field name="name">Customer Detail</field>
+      <field name="res_model">customer.detail</field>
       <field name="view_mode">tree,form,kanban,graph</field>
     </record>
 
-    <record model="ir.actions.act_window" id="builder_detail_action">
-      <field name="name">builder.detail.window</field>
-      <field name="res_model">builder.detail</field>
-      <field name="view_mode">tree,form</field>
-    </record>
-
-    <record model="ir.actions.act_window" id="laboratory_testing_status_action">
-      <field name="name">laboratory.testing.status.window</field>
-      <field name="res_model">laboratory.testing.status</field>
+    <record model="ir.actions.act_window" id="testing_detail_action">
+      <field name="name">Testing Detail</field>
+      <field name="res_model">testing.detail</field>
       <field name="view_mode">tree,form,calendar</field>
     </record>
 
     <menuitem name="CMT" id="cmt_menu_root"/>
-    <menuitem name="Lab" id="laboratory_detail_menu" parent="cmt_menu_root" action="laboratory_detail_action"/>
-    <menuitem name="Builder" id="builder_detail_menu" parent="cmt_menu_root" action="builder_detail_action"/>
-    <menuitem name="Status" id="laboratory_testing_status_menu" parent="cmt_menu_root" action="laboratory_testing_status_action"/>
+    <menuitem name="Inquiry" id="customer_detail_menu" parent="cmt_menu_root" action="customer_detail_action"/>
+    <menuitem name="Testing" id="testing_detail_menu" parent="cmt_menu_root" action="testing_detail_action"/>
 
   </data>
 </odoo>
+ 

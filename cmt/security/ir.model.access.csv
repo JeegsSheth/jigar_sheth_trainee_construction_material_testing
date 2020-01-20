@@ -1,4 +1,3 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_laboratory_detail,access_laboratory_detail,model_laboratory_detail,base.group_user,1,1,1,1
-access_builder_detail,access_builder_detail,model_builder_detail,base.group_user,1,1,1,1
-access_laboratory_testing_status,access_laboratory_testing_status,model_laboratory_testing_status,base.group_user,1,1,1,1
+access_customer_detail,access_customer_detail,model_customer_detail,base.group_user,1,1,1,1 
+access_testing_detail,access_testing_detail,model_testing_detail,base.group_user,1,1,1,1

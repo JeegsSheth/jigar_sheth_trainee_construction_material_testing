@@ -9,13 +9,11 @@
 
     'author': "JS",
 
-    'depends': ['website'],
-
     'version': '0.1',
 
     'data': [
         'security/ir.model.access.csv',
+        'data/data.xml',
         'views/views.xml',
-        'views/templates.xml',
     ],
 }
