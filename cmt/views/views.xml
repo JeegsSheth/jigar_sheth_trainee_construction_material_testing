@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
   <data>
 
@@ -5,7 +6,7 @@
       <field name="name">customer.detail.tree</field>
       <field name="model">customer.detail</field>
       <field name="arch" type="xml">
-        <tree decoration-success="name=='cementtest'" decoration-info="name=='soiltest'" decoration-danger="name=='fieldtest'" decoration-warning="name=='steeltest'"  decoration-primary="name=='concretetest'">
+        <tree>
           <field name="name"/>
           <field name="facilityname"/>
           <field name="contact"/>         
@@ -22,8 +23,8 @@
           <sheet>
             <group>
               <field name="name"/>
-              <field name="contact"/>
-              <field name="email"/>    
+              <field name="contact" widget="phone"/>
+              <field name="email" widget="email"/>    
             </group>
             <group>
               <field name="facilityname"/>
@@ -37,7 +38,7 @@
         <field name="name">customer.detail.kanban</field>
         <field name="model">customer.detail</field>
         <field name="arch" type="xml">
-          <kanban default_group_by="facilityname" class="o_kanban_dashboard" widget="color">
+          <kanban default_group_by="facilityname" string="Kanban View" class="o_kanban_dashboard" widget="color">
             <templates>
               <t t-name="kanban-box">
                 <div t-attf-class="oe_kanban_content">
@@ -88,6 +89,8 @@
                 <field name="facilityname"/>
                 <field name="testingstart"/>
                 <field name="testingend"/>
+                <field name="testingdays"/>
+                <field name="state"/>
             </tree>
           </field>
         </record>
@@ -98,24 +101,41 @@
         <field name="arch" type="xml">
           <form string="Lab Testing Form">
                 <header>
-                    <button name="action_inprogress" states="todo,completed" string="In Progress" type="object" class="btn-danger"/>
-                    <button name="action_completed" states="todo,inprogress" string="Completed" type="object" class="btn-success"/>
-                    <button name="action_todo" states="completed" string="To Do" type="object" class="btn-dark"/>
-                    <field name="state" widget="statusbar" statusbar_visible="todo,inprogress,completed" clickable="True"/>
+                    <field name="state" widget="statusbar"/>
                 </header>
             <sheet>
-              <group>
-
-                <field name="custid"/>
-                <field name="address"/>
-                <field name="facilityname"/>
-                <field name="testingstart"/>
-                <field name="testingend"/>
-              </group>
+                <group>
+                    <field name="custid"/>
+                    <field name="address"/>
+                    <field name="facilityname"/>
+                    <field name="testingstart"/>
+                    <field name="testingend"/>
+                    <field name="testingdays"/>
+                </group>
             </sheet>
           </form>
         </field>
       </record>
+
+      <record id="testing_detail_kanban_view" model="ir.ui.view">
+        <field name="name">testing.detail.kanban</field>
+        <field name="model">testing.detail</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="state" string="Kanban View" class="o_kanban_dashboard" widget="color">
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_content">
+                            <!-- <img src="/cmt/static/cardimage/Soil_Testing.jpg" widget="image"/> -->
+                            <field name="custid"/>
+                            <field name="facilityname"/>
+                            <field name="testingstart"/>
+                            <field name="testingend"/>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
 
         <record model="ir.ui.view" id="testing_detail_calendar_view">
           <field name="name">testing.detail.calendar</field>
@@ -131,7 +151,19 @@
           </field>
         </record>
 
-    <report
+    <record model="ir.ui.view" id="testing_detail_graph_view">
+      <field name="name">testing.detail.graph</field>
+      <field name="model">testing.detail</field>
+      <field name="arch" type="xml">
+        <graph string="Testing Graph" type="line">
+         <field name="custid"/>  
+          <field name="testingstart"/>
+          <field name="testingend"/>
+        </graph>
+      </field>
+    </record>
+
+    <!-- <report
         id="report_status"
         model="testing.detail"
         string="Status Report"
@@ -173,7 +205,34 @@
                 </t>
             </t>
         </t>
-    </template>
+    </template> -->
+
+
+    <record model="ir.ui.view" id="testing_detail_pivot_view">
+        <field name="name">testing.detail.pivot</field>
+        <field name="model">testing.detail</field>
+        <field name="arch" type="xml">
+            <pivot string="Testing Line">
+                <field name="custid" type="row"/>
+                <field name="facilityname" type="col"/>
+                <!-- <field name="state" type="col"/> -->
+                <field name="testingstart" type="col"/>
+                <field name="testingend" type="col"/>
+            </pivot>            
+        </field>
+    </record>
+    
+    <record model="ir.ui.view" id="reporting_view_dashboard">
+        <field name="name">testing.detail.dashboard</field>
+        <field name="model">testing.detail</field>
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <dashboard>
+                <view type="graph" ref="testing_detail_graph_view"/>
+                <view type="pivot" ref="testing_detail_pivot_view"/>
+            </dashboard>
+        </field>
+    </record>
 
 
     <record model="ir.actions.act_window" id="customer_detail_action">
@@ -185,13 +244,22 @@
     <record model="ir.actions.act_window" id="testing_detail_action">
       <field name="name">Testing Detail</field>
       <field name="res_model">testing.detail</field>
-      <field name="view_mode">tree,form,calendar</field>
+      <field name="view_mode">tree,form,pivot,calendar,graph</field>
     </record>
 
-    <menuitem name="CMT" id="cmt_menu_root"/>
-    <menuitem name="Inquiry" id="customer_detail_menu" parent="cmt_menu_root" action="customer_detail_action"/>
-    <menuitem name="Testing" id="testing_detail_menu" parent="cmt_menu_root" action="testing_detail_action"/>
+    <record model="ir.actions.act_window" id="reporting_action">
+      <field name="name">Reporting</field>
+      <field name="res_model">testing.detail</field>
+      <field name="view_mode">dashboard,graph,pivot,tree,kanban,calendar</field>
+    </record>
 
+    <menuitem name="CMT" id="cmt_menu_root" web_icon="cmt,static/description/icon3.png"/>
+    <menuitem name="Inquiry" id="customer_detail_menu" parent="cmt_menu_root" action="customer_detail_action" groups="cmt.group_laboratory,cmt.group_admin"/>
+    <menuitem name="Testing" id="testing_detail_menu" parent="cmt_menu_root" action="testing_detail_action"/>
+    <menuitem name="Observation" id="testing_observation_menu" parent="cmt_menu_root" action="testing_observation_action"/>
+    <menuitem name="Result" id="testing_result_menu" parent="cmt_menu_root" action="testing_result_action" groups="cmt.group_laboratory,cmt.group_admin"/>
+    <menuitem name="Reporting" id="Reporting_menu" parent="cmt_menu_root" action="reporting_action"/>
+    <menuitem name="Configuration" id="configuration_menu" parent="cmt_menu_root" action="customer_detail_action"/>
   </data>
 </odoo>
  

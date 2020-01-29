@@ -1,0 +1,61 @@
+<odoo>
+    <data>
+        <report
+            id="testing_observation_report_view"
+            model="testing.observation"
+            string="Observation Report"
+            name="cmt.testing_observation_report"
+            file="cmt.result"
+            report_type="qweb-pdf"
+            groups="cmt.group_laboratory" />
+
+        <template id="testing_observation_report">
+          <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+              <div class="page">
+                <table class="table">
+                  <thead>
+                    <tr>
+                        <th scope="col">Sr. No.</th>
+                        <th scope="col">Sample Depth</th>
+                        <th scope="col">Sample Type</th>
+                        <th scope="col">Gravel (%)</th>
+                        <th scope="col">Sand (%)</th>
+                        <th scope="col">Silt And Clay (%)</th>
+                        <th scope="col">Classification</th>
+                        <th scope="col">Field Dry Density (gm/cc)</th>
+                        <th scope="col">Field Moisture Content (%)</th>
+                        <th scope="col">Specific GravityCohesion (kg/cm²)</th>
+                        <th scope="col">Cohesion (kg/cm²)</th>
+                        <th scope="col">Angle of Internal Friction</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                      <t t-foreach="docs" t-as="test">
+                        <t t-foreach="test.soil_result" t-as="soil_result">
+                        <tr>
+                          <th scope="row">1</th>
+                          
+                            <td><span t-field="soil_result.sample_depth"/></td>
+                            <td><span t-field="soil_result.sample_type"/></td>
+                            <td><span t-field="soil_result.gravel"/></td>
+                            <td><span t-field="soil_result.sand"/></td>
+                            <td><span t-field="soil_result.silt_clay"/></td>
+                            <td><span t-field="soil_result.classification"/></td>
+                            <td><span t-field="soil_result.field_dry_density"/></td>
+                            <td><span t-field="soil_result.field_moisture_content"/></td>
+                            <td><span t-field="soil_result.specific_gravity"/></td>
+                            <td><span t-field="soil_result.cohesion"/></td>
+                            <td><span t-field="soil_result.angle_of_internal_friction"/></td>
+                          
+                      </tr>
+                      </t>
+                    </t>
+                  </tbody>
+                </table>
+              </div>
+            </t>
+          </t>
+        </template>
+    </data>
+</odoo>

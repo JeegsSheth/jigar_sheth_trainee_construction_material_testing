@@ -1,0 +1,47 @@
+<odoo>
+    <data>
+<report
+        id="report_status"
+        model="testing.detail"
+        string="Status Report"
+        name="cmt.report_status_view"
+        file="cmt.status"
+        report_type="qweb-pdf" />
+
+<template id="report_status_view">
+    <t t-call="web.html_container">
+        <t t-foreach="docs" t-as="doc">
+            <t t-call="web.external_layout">
+              <center>
+                <div class="page">
+                    <h1>JS Industry</h1><br/><br/>
+                    <table width="60%">
+                        <tr>
+                            <td>Cust Name :- </td>
+                            <td><span t-field="doc.custid"/></td>
+                        </tr>
+                        <tr>
+                            <td>Address :- </td>
+                            <td><span t-field="doc.address"/></td>
+                        </tr>
+                        <tr>
+                            <td>Testing Start Date :- </td>
+                            <td><span t-field="doc.testingstart"/></td>
+                        </tr>
+                        <tr>
+                            <td>Testing End Date :- </td>
+                            <td><span t-field="doc.testingend"/></td>
+                        </tr>
+                        <tr>
+                            <td>Testing State :- </td>
+                            <td><span t-field="doc.state"/></td>
+                        </tr>
+                    </table>
+                </div>
+              </center>
+            </t>
+        </t>
+    </t>
+</template>
+</data>
+</odoo>

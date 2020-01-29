@@ -5,86 +5,88 @@
 			<field name="name">Jigar Sheth</field>
 			<field name="contact">8153963606</field>
 			<field name="email">jigarsheth93@gmail.com</field>
-			<field name="facilityname">soiltest</field>
+			<field name="facilityname">soil_test</field>
 		</record>
 		<record id="customer2" model="customer.detail">
 			<field name="name">Jigar Sheth</field>
 			<field name="contact">8153963606</field>
 			<field name="email">jigarsheth93@gmail.com</field>
-			<field name="facilityname">concretetest</field>
+			<field name="facilityname">concrete_test</field>
 		</record>
 		<record id="customer3" model="customer.detail">
 			<field name="name">Jigar Sheth</field>
 			<field name="contact">8153963606</field>
 			<field name="email">jigarsheth93@gmail.com</field>
-			<field name="facilityname">cementtest</field>
+			<field name="facilityname">sand_aggregate_fillers_test</field>
 		</record>
 		<record id="customer4" model="customer.detail">
 			<field name="name">Jigar Sheth</field>
 			<field name="contact">8153963606</field>
 			<field name="email">jigarsheth93@gmail.com</field>
-			<field name="facilityname">steeltest</field>
+			<field name="facilityname">steel_test</field>
 		</record>
 		<record id="customer5" model="customer.detail">
 			<field name="name">Jigar Sheth</field>
 			<field name="contact">8153963606</field>
 			<field name="email">jigarsheth93@gmail.com</field>
-			<field name="facilityname">fieldtest</field>
+			<field name="facilityname">field_test</field>
 		</record>
 		<record id="customer6" model="customer.detail">
 			<field name="name">Bhavin Patel</field>
 			<field name="contact">9925256363</field>
 			<field name="email">bsp@gmail.com</field>
-			<field name="facilityname">soiltest</field>
+			<field name="facilityname">soil_test</field>
 		</record>
 		<record id="customer7" model="customer.detail">
 			<field name="name">Bhavin Patel</field>
 			<field name="contact">9925256363</field>
 			<field name="email">bsp@gmail.com</field>
-			<field name="facilityname">concretetest</field>
+			<field name="facilityname">concrete_test</field>
 		</record>
 		<record id="customer8" model="customer.detail">
 			<field name="name">Bhavin Patel</field>
 			<field name="contact">9925256363</field>
 			<field name="email">bsp@gmail.com</field>
-			<field name="facilityname">steeltest</field>
+			<field name="facilityname">bitumen_asphalt_test</field>
 		</record>
 		<record id="customer9" model="customer.detail">
 			<field name="name">Bhavin Patel</field>
 			<field name="contact">9925256363</field>
 			<field name="email">bsp@gmail.com</field>
-			<field name="facilityname">fieldtest</field>
+			<field name="facilityname">rock_test</field>
 		</record>
 		<record id="customer10" model="customer.detail">
 			<field name="name">Bhaumik Pitalia</field>
 			<field name="contact">9106832020</field>
 			<field name="email">bhaumikpitalia97@gmail.com</field>
-			<field name="facilityname">soiltest</field>
+			<field name="facilityname">geotextile_test</field>
 		</record>
 		<record id="customer11" model="customer.detail">
 			<field name="name">Bhaumik Pitalia</field>
 			<field name="contact">9106832020</field>
 			<field name="email">bhaumikpitalia97@gmail.com</field>
-			<field name="facilityname">steeltest</field>
+			<field name="facilityname">brick_block_test</field>
 		</record>
 		<record id="customer12" model="customer.detail">
 			<field name="name">Smit Modi</field>
 			<field name="contact">8300004545</field>
 			<field name="email">smitmodi006@gmail.com</field>
-			<field name="facilityname">soiltest</field>
+			<field name="facilityname">soil_test</field>
 		</record>
 		<record id="customer13" model="customer.detail">
 			<field name="name">Smit Modi</field>
 			<field name="contact">8300004545</field>
 			<field name="email">smitmodi006@gmail.com</field>
-			<field name="facilityname">steeltest</field>
+			<field name="facilityname">water_test</field>
 		</record>
 		<record id="customer14" model="customer.detail">
 			<field name="name">Smit Modi</field>
 			<field name="contact">8300004545</field>
 			<field name="email">smitmodi006@gmail.com</field>
-			<field name="facilityname">fieldtest</field>
+			<field name="facilityname">cement_lime_mortar_test</field>
 		</record>
+
+
 
 
 
@@ -120,8 +122,8 @@
 			<field name="custid" ref="cmt.customer6"></field>
 			<field name="address">Galaxy Apartment , Vastrapur Lake , Ahmedabad</field>
 			<field name="testingstart">2020-01-08</field>
-			<field name="testingend">2020-01-28</field>
-			<field name="state">inprogress</field>
+			<field name="testingend">2020-01-23</field>
+			<field name="state">completed</field>
 		</record>
 		<record id="testing6" model="testing.detail">
 			<field name="custid" ref="cmt.customer12"></field>
@@ -164,6 +166,120 @@
 			<field name="testingstart">2020-02-09</field>
 			<field name="testingend">2020-02-23</field>
 			<field name="state">todo</field>
+		</record>
+
+
+
+
+
+		<record id="result1" model="testing.result">
+			<field name="sample_depth">1.00</field>
+			<field name="sample_type">uds</field>
+			<field name="gravel">16</field>
+			<field name="sand">45</field>
+			<field name="silt_clay">39</field>
+			<field name="classification">sm</field>
+			<field name="field_dry_density">1.63</field>
+			<field name="field_moisture_content">10.22</field>
+			<field name="specific_gravity">2.58</field>
+			<field name="cohesion">0.00</field>
+			<field name="angle_of_internal_friction">32.0</field>
+		</record>
+		<record id="result2" model="testing.result">
+			<field name="sample_depth">2.00</field>
+			<field name="sample_type">spt</field>
+			<field name="gravel">5</field>
+			<field name="sand">87</field>
+			<field name="silt_clay">8</field>
+			<field name="classification">sp_sm</field>
+			<field name="angle_of_internal_friction">32.0</field>
+		</record>
+		<record id="result3" model="testing.result">
+			<field name="sample_depth">3.00</field>
+			<field name="sample_type">spt</field>
+			<field name="gravel">17</field>
+			<field name="sand">76</field>
+			<field name="silt_clay">7</field>
+			<field name="classification">sp_sm</field>
+			<field name="angle_of_internal_friction">32.0</field>
+		</record>
+		<record id="result4" model="testing.result">
+			<field name="sample_depth">4.00</field>
+			<field name="sample_type">uds</field>
+			<field name="gravel">8</field>
+			<field name="sand">86</field>
+			<field name="silt_clay">6</field>
+			<field name="classification">sp_sm</field>
+			<field name="field_dry_density">1.65</field>
+			<field name="field_moisture_content">10.51</field>
+			<field name="specific_gravity">2.58</field>
+			<field name="cohesion">0.00</field>
+			<field name="angle_of_internal_friction">32.0</field>
+		</record>
+		<record id="result5" model="testing.result">
+			<field name="sample_depth">5.00</field>
+			<field name="sample_type">spt</field>
+			<field name="gravel">3</field>
+			<field name="sand">91</field>
+			<field name="silt_clay">6</field>
+			<field name="classification">sp_sm</field>
+			<field name="angle_of_internal_friction">32.0</field>
+		</record>
+		<record id="result6" model="testing.result">
+			<field name="sample_depth">1.00</field>
+			<field name="sample_type">uds</field>
+			<field name="gravel">18</field>
+			<field name="sand">45</field>
+			<field name="silt_clay">37</field>
+			<field name="classification">sm</field>
+			<field name="field_dry_density">1.60</field>
+			<field name="field_moisture_content">11.52</field>
+			<field name="specific_gravity">2.85</field>
+			<field name="cohesion">0.00</field>
+			<field name="angle_of_internal_friction">45.0</field>
+		</record>
+		<record id="result7" model="testing.result">
+			<field name="sample_depth">2.00</field>
+			<field name="sample_type">spt</field>
+			<field name="gravel">8</field>
+			<field name="sand">80</field>
+			<field name="silt_clay">12</field>
+			<field name="classification">sp_sm</field>
+			<field name="angle_of_internal_friction">45.0</field>
+		</record>
+		<record id="result8" model="testing.result">
+			<field name="sample_depth">3.00</field>
+			<field name="sample_type">uds</field>
+			<field name="gravel">6</field>
+			<field name="sand">84</field>
+			<field name="silt_clay">10</field>
+			<field name="classification">sp_sm</field>
+			<field name="field_dry_density">1.75</field>
+			<field name="field_moisture_content">11.92</field>
+			<field name="specific_gravity">2.95</field>
+			<field name="cohesion">0.00</field>
+			<field name="angle_of_internal_friction">45.0</field>
+		</record>
+		<record id="result9" model="testing.result">
+			<field name="sample_depth">4.00</field>
+			<field name="sample_type">spt</field>
+			<field name="gravel">4</field>
+			<field name="sand">92</field>
+			<field name="silt_clay">4</field>
+			<field name="classification">sp_sm</field>
+			<field name="angle_of_internal_friction">45.0</field>
+		</record>
+
+
+
+
+		<record id="observation1" model="testing.observation">
+			<field name="test_id" ref="cmt.testing1"></field>
+			<field name="soil_result" eval="[(6,0 ,[ref('cmt.result1'), ref('cmt.result2'), ref('cmt.result3'), ref('cmt.result4'), ref('cmt.result5')])]" />
+		</record>
+		<record id="observation2" model="testing.observation">
+			<field name="test_id" ref="cmt.testing5"></field>
+			<field name="soil_result" eval="[(6,0 ,[ref('cmt.result6'), ref('cmt.result7'), ref('cmt.result8'), ref('cmt.result9')])]" />
 		</record>
 
 	</data>

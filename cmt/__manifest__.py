@@ -9,11 +9,19 @@
 
     'author': "JS",
 
+    'depends': ['web_dashboard'],
+
     'version': '0.1',
 
     'data': [
+        'security/security.xml',
         'security/ir.model.access.csv',
         'data/data.xml',
+        'report/report.xml',
+        'report/result.xml',
+        'views/observation.xml',
         'views/views.xml',
     ],
+
+    'application': True,
 }

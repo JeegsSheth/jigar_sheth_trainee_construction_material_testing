@@ -1,0 +1,137 @@
+<odoo>
+<data>
+
+    <record model='ir.ui.view' id='testing_observation_tree_view'>
+        <field name='name'>testing.observation.tree</field>
+        <field name='model'>testing.observation</field>
+        <field name='arch' type='xml'>
+            <tree string='Observation Tree'>
+                <field name='test_id'/>
+                <field name='facilityname'/>
+                <field name='soil_result'/>
+            </tree>
+        </field>
+    </record>
+
+    <record model='ir.ui.view' id='testing_observation_form_view'>
+        <field name='name'>testing.observation.form</field>
+        <field name='model'>testing.observation</field>
+        <field name='arch' type='xml'>
+            <form string="Observation Form">
+                <group>
+                    <group>
+                        <field name='test_id'/>
+                    </group>
+                    <group>
+                        <field name='facilityname'/>
+                    </group>
+                </group>
+                <notebook>
+                    <page string="Result">
+                        <field name='soil_result'/>
+                    </page>
+                </notebook>
+            </form>
+        </field>
+    </record>
+
+    <record model='ir.ui.view' id='testing_observation_graph_view'>
+        <field name='name'>testing.observation.graph</field>
+        <field name='model'>testing.observation</field>
+        <field name='arch' type='xml'>
+            <graph>
+                <field name="test_id"/>
+                <!-- <field name='sample_depth' type="row"/>
+                <field name='gravel' type="measure"/>
+                <field name='sand' type="measure"/>
+                <field name='silt_clay' type="measure"/> -->
+            </graph>                
+        </field>
+    </record>
+
+
+    <record model='ir.ui.view' id='testing_result_tree_view'>
+        <field name='name'>testing.result.tree</field>
+        <field name='model'>testing.result</field>
+        <field name='arch' type='xml'>
+            <tree string='Result Tree' editable="bottom">
+                <field name='sample_depth'/>
+                <field name='sample_type'/>
+                <field name='gravel'/>
+                <field name='sand'/>
+                <field name='silt_clay'/>
+                <field name='classification'/>
+                <field name='field_dry_density' attrs="{'invisible': [('sample_type', '!=', 'uds')]}"/>
+                <field name='field_moisture_content' attrs="{'invisible': [('sample_type', '!=', 'uds')]}"/>
+                <field name='specific_gravity' attrs="{'invisible': [('sample_type', '!=', 'uds')]}"/>
+                <field name='cohesion' attrs="{'invisible': [('sample_type', '!=', 'uds')]}"/>
+                <field name='angle_of_internal_friction'/>
+            </tree>
+        </field>
+    </record>
+
+    <record model='ir.ui.view' id='testing_result_form_view'>
+        <field name='name'>testing.result.form</field>
+        <field name='model'>testing.result</field>
+        <field name='arch' type='xml'>
+            <form string="Result Form">
+                <sheet>
+                        <group>
+                            <group>
+                                <field name='sample_depth'/>
+                                <field name='sample_type'/>
+                                <field name='gravel'/>
+                                <field name='sand'/>
+                                <field name='silt_clay'/>
+                                <field name='classification'/>
+                            </group>
+                            <group>
+                                <field name='field_dry_density' attrs="{'invisible': [('sample_type', '!=', 'uds')]}"/>
+                                <field name='field_moisture_content' attrs="{'invisible': [('sample_type', '!=', 'uds')]}"/>
+                                <field name='specific_gravity' attrs="{'invisible': [('sample_type', '!=', 'uds')]}"/>
+                                <field name='cohesion' attrs="{'invisible': [('sample_type', '!=', 'uds')]}"/>
+                                <field name='angle_of_internal_friction'/>
+                            </group>
+                        </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model='ir.ui.view' id='testing_result_graph_view'>
+        <field name='name'>testing.result.graph</field>
+        <field name='model'>testing.result</field>
+        <field name='arch' type='xml'>
+            <graph string="Test Graph">
+                <field name='observation_id' type="row"/>
+                <field name='sample_depth' type="row"/>
+                <field name='gravel' type="measure"/>
+                <field name='sand' type="measure"/>
+                <field name='silt_clay' type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <record model='ir.ui.view' id='testing_result_graph_view'>
+        <field name='name'>testing.result.graph</field>
+        <field name='model'>testing.result</field>
+        <field name='arch' type='xml'>
+            <search>
+                <field name='observation_id'/>
+                <field name='sample_depth'/>                
+            </search>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="testing_observation_action">
+      <field name="name">Observation</field>
+      <field name="res_model">testing.observation</field>
+      <field name="view_mode">tree,form,kanban,graph</field>
+    </record>
+    <record model="ir.actions.act_window" id="testing_result_action">
+      <field name="name">Result</field>
+      <field name="res_model">testing.result</field>
+      <field name="view_mode">tree,form,graph</field>
+    </record>
+</data>
+</odoo>
