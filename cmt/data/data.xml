@@ -1,4 +1,4 @@
-<odoo>
+<!-- <odoo>
 	<data>
 
 		<record id="customer1" model="customer.detail">
@@ -283,4 +283,4 @@
 		</record>
 
 	</data>
-</odoo>
+</odoo> -->

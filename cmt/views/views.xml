@@ -8,9 +8,10 @@
       <field name="arch" type="xml">
         <tree>
           <field name="name"/>
-          <field name="facilityname"/>
-          <field name="contact"/>         
-          <field name="email"/>
+          <field name="facility_id"/>
+          <field name="contact" widget="phone"/>         
+          <field name="email" widget="email"/>
+          <field name="state"/>
         </tree>
       </field>
     </record>
@@ -24,10 +25,18 @@
             <group>
               <field name="name"/>
               <field name="contact" widget="phone"/>
-              <field name="email" widget="email"/>    
+              <field name="email" widget="email"/>
+              <field name="address"/>
+              <field name="state"/>
+              <field name="facility_id"/>    
             </group>
             <group>
-              <field name="facilityname"/>
+              <group>
+                <field name="state"/>
+              </group>
+              <group>
+                <field name="state"/>
+              </group>
             </group>
           </sheet>
         </form>
@@ -38,14 +47,15 @@
         <field name="name">customer.detail.kanban</field>
         <field name="model">customer.detail</field>
         <field name="arch" type="xml">
-          <kanban default_group_by="facilityname" string="Kanban View" class="o_kanban_dashboard" widget="color">
+          <kanban default_group_by="facility_id" string="Kanban View" class="o_kanban_dashboard" widget="color">
             <templates>
               <t t-name="kanban-box">
                 <div t-attf-class="oe_kanban_content">
                   <field name="name"/>
-                  <field name="facilityname"/>
-                  <field name="contact"/>
-                  <field name="email"/>
+                  <field name="facility_id"/>
+                  <field name="contact" widget="phone"/>
+                  <field name="email" widget="email"/>
+                  <field name="address"/>
                 </div>
               </t>
             </templates>
@@ -60,7 +70,7 @@
         <graph string="Customer Graph" type="line">
           
           <field name="name"/>
-          <field name="facilityname"/>
+          <field name="facility_id"/>
         </graph>
       </field>
     </record>
@@ -73,7 +83,7 @@
                 <field name="name" widget="selection"/>
                 <group string="Group By">
                   <filter name="group_by_facility" string="Customer" context="{'group_by': 'name'}"/>
-                  <filter name="group_by_facility" string="Facility" context="{'group_by': 'facilityname'}"/>
+                  <filter name="group_by_facility" string="Facility" context="{'group_by': 'facility_id'}"/>
                 </group>
             </search>
         </field>
@@ -84,9 +94,9 @@
           <field name="model">testing.detail</field>
           <field name="arch" type="xml">
             <tree string="Lab Testing">
-                <field name="custid"/>
-                <field name="address"/>
-                <field name="facilityname"/>
+                <field name="customer_id"/>
+                
+                <field name="facility_id"/>
                 <field name="testingstart"/>
                 <field name="testingend"/>
                 <field name="testingdays"/>
@@ -105,9 +115,9 @@
                 </header>
             <sheet>
                 <group>
-                    <field name="custid"/>
-                    <field name="address"/>
-                    <field name="facilityname"/>
+                    <field name="customer_id"/>
+                    
+                    <field name="facility_id"/>
                     <field name="testingstart"/>
                     <field name="testingend"/>
                     <field name="testingdays"/>
@@ -126,8 +136,8 @@
                     <t t-name="kanban-box">
                         <div t-attf-class="oe_kanban_content">
                             <!-- <img src="/cmt/static/cardimage/Soil_Testing.jpg" widget="image"/> -->
-                            <field name="custid"/>
-                            <field name="facilityname"/>
+                            <field name="customer_id"/>
+                            <field name="facility_id"/>
                             <field name="testingstart"/>
                             <field name="testingend"/>
                         </div>
@@ -141,10 +151,10 @@
           <field name="name">testing.detail.calendar</field>
           <field name="model">testing.detail</field>
           <field name="arch" type="xml">
-            <calendar string="Testing Duration" date_start="testingstart" date_stop="testingend" color="facilityname">
+            <calendar string="Testing Duration" date_start="testingstart" date_stop="testingend" color="facility_id">
                 
-                <field name="custid"/>
-                <field name="facilityname"/>  
+                <field name="customer_id"/>
+                <field name="facility_id"/>  
                 <field name="testingstart"/>
                 <field name="testingend"/>
             </calendar>
@@ -156,7 +166,7 @@
       <field name="model">testing.detail</field>
       <field name="arch" type="xml">
         <graph string="Testing Graph" type="line">
-         <field name="custid"/>  
+         <field name="customer_id"/>  
           <field name="testingstart"/>
           <field name="testingend"/>
         </graph>
@@ -181,7 +191,7 @@
                         <table width="30%">
                           <tr>
                             <td>Cust Name :- </td>
-                            <td><span t-field="doc.custid"/></td>
+                            <td><span t-field="doc.customer_id"/></td>
                           </tr>
                           <tr>
                             <td>Address :- </td>
@@ -213,8 +223,8 @@
         <field name="model">testing.detail</field>
         <field name="arch" type="xml">
             <pivot string="Testing Line">
-                <field name="custid" type="row"/>
-                <field name="facilityname" type="col"/>
+                <field name="customer_id" type="row"/>
+                <field name="facility_id" type="col"/>
                 <!-- <field name="state" type="col"/> -->
                 <field name="testingstart" type="col"/>
                 <field name="testingend" type="col"/>
@@ -232,6 +242,32 @@
                 <view type="pivot" ref="testing_detail_pivot_view"/>
             </dashboard>
         </field>
+    </record>
+
+    <record model="ir.ui.view" id="facility_detail_tree_view">
+      <field name="name">facility.detail.tree</field>
+      <field name="model">facility.detail</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="price"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="facility_detail_form_view">
+      <field name="name">facility.detail.form</field>
+      <field name="model">facility.detail</field>
+      <field name="arch" type="xml">
+        <form string="Facility detail Form">
+          <sheet>
+            <group>
+              <field name="name"/>
+              <field name="price"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
     </record>
 
 
@@ -253,13 +289,21 @@
       <field name="view_mode">dashboard,graph,pivot,tree,kanban,calendar</field>
     </record>
 
+    <record model="ir.actions.act_window" id="facility_detail_action">
+      <field name="name">Facility</field>
+      <field name="res_model">facility.detail</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+
     <menuitem name="CMT" id="cmt_menu_root" web_icon="cmt,static/description/icon3.png"/>
-    <menuitem name="Inquiry" id="customer_detail_menu" parent="cmt_menu_root" action="customer_detail_action" groups="cmt.group_laboratory,cmt.group_admin"/>
+    <menuitem name="Inquiry" id="customer_detail_menu" parent="cmt_menu_root" action="customer_detail_action"/>
     <menuitem name="Testing" id="testing_detail_menu" parent="cmt_menu_root" action="testing_detail_action"/>
     <menuitem name="Observation" id="testing_observation_menu" parent="cmt_menu_root" action="testing_observation_action"/>
-    <menuitem name="Result" id="testing_result_menu" parent="cmt_menu_root" action="testing_result_action" groups="cmt.group_laboratory,cmt.group_admin"/>
+    <menuitem name="Result" id="testing_result_menu" parent="cmt_menu_root" action="testing_result_action"/>
     <menuitem name="Reporting" id="Reporting_menu" parent="cmt_menu_root" action="reporting_action"/>
-    <menuitem name="Configuration" id="configuration_menu" parent="cmt_menu_root" action="customer_detail_action"/>
+    <menuitem name="Configuration" id="configuration_menu" parent="cmt_menu_root"/>
+    <menuitem name="Facility" id="facility_menu" parent="configuration_menu" action="facility_detail_action"/>
   </data>
 </odoo>
  

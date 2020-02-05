@@ -18,7 +18,7 @@
                     <table width="60%">
                         <tr>
                             <td>Cust Name :- </td>
-                            <td><span t-field="doc.custid"/></td>
+                            <td><span t-field="doc.customer_id"/></td>
                         </tr>
                         <tr>
                             <td>Address :- </td>

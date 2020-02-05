@@ -9,18 +9,22 @@
 
     'author': "JS",
 
-    'depends': ['web_dashboard'],
+    'depends': ['web_dashboard', 'portal'],
 
     'version': '0.1',
 
     'data': [
         'security/security.xml',
         'security/ir.model.access.csv',
-        'data/data.xml',
         'report/report.xml',
         'report/result.xml',
+        'views/template.xml',
         'views/observation.xml',
         'views/views.xml',
+    ],
+
+    'demo': [
+        'demo/demo.xml',
     ],
 
     'application': True,

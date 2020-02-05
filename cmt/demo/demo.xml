@@ -1,0 +1,554 @@
+<odoo>
+	<data>
+
+		<record id="partner001" model="res.partner">
+			<field name="name">aqualab</field>
+			<field name="email">aqualab@gmail.com</field>
+		</record>
+		<record id="company001" model="res.company">
+			<field name="name">Aqua Lab</field>
+			<field name="partner_id" ref="cmt.partner001"></field>
+		</record>
+		<record id="user001" model="res.users">
+			<field name="partner_id" ref="cmt.partner001"></field>
+			<field name="login">aqualab</field>
+			<field name="password">123</field>
+			<field name="company_id" ref="cmt.company001"></field>
+			<field name="company_ids" eval="[(4, ref('cmt.company001'))]" />
+			<field name="groups_id" eval="[(6,0 , [ref('cmt.group_manager')])]" />
+		</record>
+
+		<record id="partner002" model="res.partner">
+			<field name="name">galaxylab</field>
+			<field name="email">galaxylab@gmail.com</field>
+		</record>
+		<record id="company002" model="res.company">
+			<field name="name">Galaxy Lab</field>
+			<field name="partner_id" ref="cmt.partner002"></field>
+		</record>
+		<record id="user002" model="res.users">
+			<field name="partner_id" ref="cmt.partner002"></field>
+			<field name="login">galaxylab</field>
+			<field name="password">123</field>
+			<field name="company_id" ref="cmt.company002"></field>
+			<field name="company_ids" eval="[(4, ref('cmt.company002'))]" />
+			<field name="groups_id" eval="[(6,0 , [ref('cmt.group_manager')])]" />
+		</record>
+
+		<record id="partner003" model="res.partner">
+			<field name="name">jupiterlab</field>
+			<field name="email">jupiterlab@gmail.com</field>
+		</record>
+		<record id="company003" model="res.company">
+			<field name="name">Jupiter Lab</field>
+			<field name="partner_id" ref="cmt.partner003"></field>
+		</record>
+		<record id="user003" model="res.users">
+			<field name="partner_id" ref="cmt.partner003"></field>
+			<field name="login">jupiterlab</field>
+			<field name="password">123</field>
+			<field name="company_id" ref="cmt.company003"></field>
+			<field name="company_ids" eval="[(4, ref('cmt.company003'))]" />
+			<field name="groups_id" eval="[(6,0 , [ref('cmt.group_manager')])]" />
+		</record>
+
+
+
+
+
+
+
+
+		<record id="partner01" model="res.partner">
+			<field name="name">john</field>
+			<field name="email">john@gmail.com</field>
+		</record>
+		<record id="user01" model="res.users">
+			<field name="partner_id" ref="cmt.partner01"></field>
+			<field name="login">john</field>
+			<field name="password">123</field>
+			<field name="groups_id" eval="[(6,0 ,[ref('base.group_portal')])]" />
+		</record>
+
+		<record id="partner02" model="res.partner">
+			<field name="name">alex</field>
+			<field name="email">alex@gmail.com</field>
+		</record>
+		<record id="user02" model="res.users">
+			<field name="partner_id" ref="cmt.partner02"></field>
+			<field name="login">alex</field>
+			<field name="password">123</field>
+			<field name="groups_id" eval="[(6,0 ,[ref('base.group_portal')])]" />
+		</record>
+
+		<record id="partner03" model="res.partner">
+			<field name="name">mike</field>
+			<field name="email">mike@gmail.com</field>
+		</record>
+		<record id="user03" model="res.users">
+			<field name="partner_id" ref="cmt.partner03"></field>
+			<field name="login">mike</field>
+			<field name="password">123</field>
+			<field name="groups_id" eval="[(6,0 ,[ref('base.group_portal')])]" />
+		</record>
+
+
+
+
+
+
+
+
+		<record id="facility1" model="facility.detail">
+			<field name="company_id" ref="cmt.company002"></field>
+			<field name="name">soil_test</field>
+			<field name="price">6000</field>
+		</record>
+		<record id="facility2" model="facility.detail">
+			<field name="company_id" ref="cmt.company002"></field>
+			<field name="name">concrete_test</field>
+			<field name="price">5000</field>
+		</record>
+		<record id="facility3" model="facility.detail">
+			<field name="company_id" ref="cmt.company002"></field>
+			<field name="name">steel_test</field>
+			<field name="price">12000</field>
+		</record>
+		<record id="facility4" model="facility.detail">
+			<field name="company_id" ref="cmt.company002"></field>
+			<field name="name">cement_lime_mortar_test</field>
+			<field name="price">3000</field>
+		</record>
+		<record id="facility5" model="facility.detail">
+			<field name="company_id" ref="cmt.company002"></field>
+			<field name="name">sand_aggregate_fillers_test</field>
+			<field name="price">3000</field>
+		</record>
+		<record id="facility6" model="facility.detail">
+			<field name="company_id" ref="cmt.company002"></field>
+			<field name="name">rock_test</field>
+			<field name="price">2000</field>
+		</record>
+		<record id="facility7" model="facility.detail">
+			<field name="company_id" ref="cmt.company002"></field>
+			<field name="name">bitumen_asphalt_test</field>
+			<field name="price">4000</field>
+		</record>
+		<record id="facility8" model="facility.detail">
+			<field name="company_id" ref="cmt.company002"></field>
+			<field name="name">geotextile_test</field>
+			<field name="price">8000</field>
+		</record>
+		<record id="facility9" model="facility.detail">
+			<field name="company_id" ref="cmt.company002"></field>
+			<field name="name">water_test</field>
+			<field name="price">2000</field>
+		</record>
+		<record id="facility10" model="facility.detail">
+			<field name="company_id" ref="cmt.company002"></field>
+			<field name="name">brick_block_test</field>
+			<field name="price">3000</field>
+		</record>
+
+
+		<record id="facility11" model="facility.detail">
+			<field name="company_id" ref="cmt.company003"></field>
+			<field name="name">soil_test</field>
+			<field name="price">7000</field>
+		</record>
+		<record id="facility12" model="facility.detail">
+			<field name="company_id" ref="cmt.company003"></field>
+			<field name="name">concrete_test</field>
+			<field name="price">6000</field>
+		</record>
+		<record id="facility13" model="facility.detail">
+			<field name="company_id" ref="cmt.company003"></field>
+			<field name="name">steel_test</field>
+			<field name="price">15000</field>
+		</record>
+		<record id="facility14" model="facility.detail">
+			<field name="company_id" ref="cmt.company003"></field>
+			<field name="name">cement_lime_mortar_test</field>
+			<field name="price">4000</field>
+		</record>
+		<record id="facility15" model="facility.detail">
+			<field name="company_id" ref="cmt.company003"></field>
+			<field name="name">sand_aggregate_fillers_test</field>
+			<field name="price">4000</field>
+		</record>
+		<record id="facility16" model="facility.detail">
+			<field name="company_id" ref="cmt.company003"></field>
+			<field name="name">rock_test</field>
+			<field name="price">3000</field>
+		</record>
+		<record id="facility17" model="facility.detail">
+			<field name="company_id" ref="cmt.company003"></field>
+			<field name="name">bitumen_asphalt_test</field>
+			<field name="price">5000</field>
+		</record>
+		<record id="facility18" model="facility.detail">
+			<field name="company_id" ref="cmt.company003"></field>
+			<field name="name">geotextile_test</field>
+			<field name="price">10000</field>
+		</record>
+		<record id="facility19" model="facility.detail">
+			<field name="company_id" ref="cmt.company003"></field>
+			<field name="name">water_test</field>
+			<field name="price">3000</field>
+		</record>
+		<record id="facility20" model="facility.detail">
+			<field name="company_id" ref="cmt.company003"></field>
+			<field name="name">brick_block_test</field>
+			<field name="price">5000</field>
+		</record>
+
+
+		<record id="facility21" model="facility.detail">
+			<field name="company_id" ref="cmt.company001"></field>
+			<field name="name">soil_test</field>
+			<field name="price">5000</field>
+		</record>
+		<record id="facility22" model="facility.detail">
+			<field name="company_id" ref="cmt.company001"></field>
+			<field name="name">concrete_test</field>
+			<field name="price">4000</field>
+		</record>
+		<record id="facility23" model="facility.detail">
+			<field name="company_id" ref="cmt.company001"></field>
+			<field name="name">steel_test</field>
+			<field name="price">10000</field>
+		</record>
+		<record id="facility24" model="facility.detail">
+			<field name="company_id" ref="cmt.company001"></field>
+			<field name="name">cement_lime_mortar_test</field>
+			<field name="price">2000</field>
+		</record>
+		<record id="facility25" model="facility.detail">
+			<field name="company_id" ref="cmt.company001"></field>
+			<field name="name">sand_aggregate_fillers_test</field>
+			<field name="price">2000</field>
+		</record>
+		<record id="facility26" model="facility.detail">
+			<field name="company_id" ref="cmt.company001"></field>
+			<field name="name">rock_test</field>
+			<field name="price">2500</field>
+		</record>
+		<record id="facility27" model="facility.detail">
+			<field name="company_id" ref="cmt.company001"></field>
+			<field name="name">bitumen_asphalt_test</field>
+			<field name="price">4000</field>
+		</record>
+		<record id="facility28" model="facility.detail">
+			<field name="company_id" ref="cmt.company001"></field>
+			<field name="name">geotextile_test</field>
+			<field name="price">9000</field>
+		</record>
+		<record id="facility29" model="facility.detail">
+			<field name="company_id" ref="cmt.company001"></field>
+			<field name="name">water_test</field>
+			<field name="price">2500</field>
+		</record>
+		<record id="facility30" model="facility.detail">
+			<field name="company_id" ref="cmt.company001"></field>
+			<field name="name">brick_block_test</field>
+			<field name="price">4500</field>
+		</record>
+
+
+
+
+
+
+		<record id="customer1" model="customer.detail">
+			<field name="company_id" ref="cmt.company002"></field>
+			<field name="user_id" ref="cmt.user02"></field>
+			<field name="contact">8153963606</field>
+			<field name="address">Ahmedabad</field>
+			<field name="facility_id" ref="cmt.facility1"></field>
+			<field name="state">confirm</field>
+		</record>
+		<record id="customer2" model="customer.detail">
+			<field name="company_id" ref="cmt.company002"></field>
+			<field name="user_id" ref="cmt.user02"></field>
+			<field name="contact">8153963606</field>
+			<field name="address">Ahmedabad</field>
+			<field name="facility_id" ref="cmt.facility2"></field>
+			<field name="state">confirm</field>
+		</record>
+		<record id="customer3" model="customer.detail">
+			<field name="company_id" ref="cmt.company002"></field>
+			<field name="user_id" ref="cmt.user02"></field>
+			<field name="contact">8153963606</field>
+			<field name="address">Ahmedabad</field>
+			<field name="facility_id" ref="cmt.facility3"></field>
+			<field name="state">confirm</field>
+		</record>
+		<record id="customer4" model="customer.detail">
+			<field name="company_id" ref="cmt.company002"></field>
+			<field name="user_id" ref="cmt.user02"></field>
+			<field name="contact">8153963606</field>
+			<field name="address">Ahmedabad</field>
+			<field name="facility_id" ref="cmt.facility6"></field>
+			<field name="state">pending</field>
+		</record>
+		<record id="customer5" model="customer.detail">
+			<field name="company_id" ref="cmt.company002"></field>
+			<field name="user_id" ref="cmt.user02"></field>
+			<field name="contact">8153963606</field>
+			<field name="address">Ahmedabad</field>
+			<field name="facility_id" ref="cmt.facility9"></field>
+			<field name="state">pending</field>
+		</record>
+		<record id="customer6" model="customer.detail">
+			<field name="company_id" ref="cmt.company002"></field>
+			<field name="user_id" ref="cmt.user03"></field>
+			<field name="contact">9106834545</field>
+			<field name="address">Anand</field>
+			<field name="facility_id" ref="cmt.facility1"></field>
+			<field name="state">confirm</field>
+		</record>
+		<record id="customer7" model="customer.detail">
+			<field name="company_id" ref="cmt.company002"></field>
+			<field name="user_id" ref="cmt.user03"></field>
+			<field name="contact">9106834545</field>
+			<field name="address">Anand</field>
+			<field name="facility_id" ref="cmt.facility2"></field>
+			<field name="state">confirm</field>
+		</record>
+		<record id="customer8" model="customer.detail">
+			<field name="company_id" ref="cmt.company002"></field>
+			<field name="user_id" ref="cmt.user03"></field>
+			<field name="contact">9106834545</field>
+			<field name="address">Anand</field>
+			<field name="facility_id" ref="cmt.facility3"></field>
+			<field name="state">confirm</field>
+		</record>
+		<record id="customer9" model="customer.detail">
+			<field name="company_id" ref="cmt.company002"></field>
+			<field name="user_id" ref="cmt.user03"></field>
+			<field name="contact">9106834545</field>
+			<field name="address">Anand</field>
+			<field name="facility_id" ref="cmt.facility9"></field>
+			<field name="state">pending</field>
+		</record>
+		<record id="customer10" model="customer.detail">
+			<field name="company_id" ref="cmt.company002"></field>
+			<field name="user_id" ref="cmt.user01"></field>
+			<field name="contact">9974714040</field>
+			<field name="address">Gandhinagar</field>
+			<field name="facility_id" ref="cmt.facility1"></field>
+			<field name="state">confirm</field>
+		</record>
+		<record id="customer11" model="customer.detail">
+			<field name="company_id" ref="cmt.company002"></field>
+			<field name="user_id" ref="cmt.user01"></field>
+			<field name="contact">9974714040</field>
+			<field name="address">Gandhinagar</field>
+			<field name="facility_id" ref="cmt.facility2"></field>
+			<field name="state">confirm</field>
+		</record>
+		<record id="customer12" model="customer.detail">
+			<field name="company_id" ref="cmt.company002"></field>
+			<field name="user_id" ref="cmt.user01"></field>
+			<field name="contact">9974714040</field>
+			<field name="address">Gandhinagar</field>
+			<field name="facility_id" ref="cmt.facility3"></field>
+			<field name="state">pending</field>
+		</record>
+
+
+		<record id="customer101" model="customer.detail">
+			<field name="company_id" ref="cmt.company001"></field>
+			<field name="user_id" ref="cmt.user02"></field>
+			<field name="contact">8153963606</field>
+			<field name="address">Ahmedabad</field>
+			<field name="facility_id" ref="cmt.facility5"></field>
+			<field name="state">confirm</field>
+		</record>
+		<record id="customer102" model="customer.detail">
+			<field name="company_id" ref="cmt.company001"></field>
+			<field name="user_id" ref="cmt.user02"></field>
+			<field name="contact">8153963606</field>
+			<field name="address">Ahmedabad</field>
+			<field name="facility_id" ref="cmt.facility7"></field>
+			<field name="state">confirm</field>
+		</record>
+		<record id="customer103" model="customer.detail">
+			<field name="company_id" ref="cmt.company001"></field>
+			<field name="user_id" ref="cmt.user02"></field>
+			<field name="contact">8153963606</field>
+			<field name="address">Ahmedabad</field>
+			<field name="facility_id" ref="cmt.facility10"></field>
+			<field name="state">pending</field>
+		</record>
+		<record id="customer104" model="customer.detail">
+			<field name="company_id" ref="cmt.company001"></field>
+			<field name="user_id" ref="cmt.user03"></field>
+			<field name="contact">9106834545</field>
+			<field name="address">Anand</field>
+			<field name="facility_id" ref="cmt.facility5"></field>
+			<field name="state">confirm</field>
+		</record>
+		<record id="customer105" model="customer.detail">
+			<field name="company_id" ref="cmt.company001"></field>
+			<field name="user_id" ref="cmt.user03"></field>
+			<field name="contact">9106834545</field>
+			<field name="address">Anand</field>
+			<field name="facility_id" ref="cmt.facility7"></field>
+			<field name="state">pending</field>
+		</record>
+		<record id="customer106" model="customer.detail">
+			<field name="company_id" ref="cmt.company001"></field>
+			<field name="user_id" ref="cmt.user01"></field>
+			<field name="contact">9974714040</field>
+			<field name="address">Gandhinagar</field>
+			<field name="facility_id" ref="cmt.facility5"></field>
+			<field name="state">confirm</field>
+		</record>
+
+		
+		<record id="customer201" model="customer.detail">
+			<field name="company_id" ref="cmt.company003"></field>
+			<field name="user_id" ref="cmt.user02"></field>
+			<field name="contact">8153963606</field>
+			<field name="address">Ahmedabad</field>
+			<field name="facility_id" ref="cmt.facility4"></field>
+			<field name="state">confirm</field>
+		</record>
+		<record id="customer202" model="customer.detail">
+			<field name="company_id" ref="cmt.company003"></field>
+			<field name="user_id" ref="cmt.user02"></field>
+			<field name="contact">8153963606</field>
+			<field name="address">Ahmedabad</field>
+			<field name="facility_id" ref="cmt.facility8"></field>
+			<field name="state">confirm</field>
+		</record>
+		<record id="customer203" model="customer.detail">
+			<field name="company_id" ref="cmt.company003"></field>
+			<field name="user_id" ref="cmt.user03"></field>
+			<field name="contact">9106834545</field>
+			<field name="address">Anand</field>
+			<field name="facility_id" ref="cmt.facility8"></field>
+			<field name="state">confirm</field>
+		</record>
+		<record id="customer204" model="customer.detail">
+			<field name="company_id" ref="cmt.company003"></field>
+			<field name="user_id" ref="cmt.user01"></field>
+			<field name="contact">9974714040</field>
+			<field name="address">Gandhinagar</field>
+			<field name="facility_id" ref="cmt.facility8"></field>
+			<field name="state">confirm</field>
+		</record>
+		
+						
+
+
+
+
+
+		<record id="testing1" model="testing.detail">
+			<field name="company_id" ref="cmt.company002"></field>
+			<field name="customer_id" ref="cmt.customer1"></field>
+			<field name="testingstart">2020-01-01</field>
+			<field name="testingend">2020-01-15</field>
+		</record>
+		<record id="testing2" model="testing.detail">
+			<field name="company_id" ref="cmt.company002"></field>
+			<field name="customer_id" ref="cmt.customer2"></field>
+			<field name="testingstart">2020-02-02</field>
+			<field name="testingend">2020-02-15</field>
+		</record>
+		<record id="testing3" model="testing.detail">
+			<field name="company_id" ref="cmt.company002"></field>
+			<field name="customer_id" ref="cmt.customer3"></field>
+			<field name="testingstart">2020-02-05</field>
+			<field name="testingend">2020-02-20</field>
+		</record>
+		<record id="testing4" model="testing.detail">
+			<field name="company_id" ref="cmt.company002"></field>
+			<field name="customer_id" ref="cmt.customer6"></field>
+			<field name="testingstart">2020-01-02</field>
+			<field name="testingend">2020-01-16</field>
+		</record>
+		<record id="testing5" model="testing.detail">
+			<field name="company_id" ref="cmt.company002"></field>
+			<field name="customer_id" ref="cmt.customer7"></field>
+			<field name="testingstart">2020-02-04</field>
+			<field name="testingend">2020-02-18</field>
+		</record>
+		<record id="testing6" model="testing.detail">
+			<field name="company_id" ref="cmt.company002"></field>
+			<field name="customer_id" ref="cmt.customer8"></field>
+			<field name="testingstart">2020-02-04</field>
+			<field name="testingend">2020-02-21</field>
+		</record>
+		<record id="testing7" model="testing.detail">
+			<field name="company_id" ref="cmt.company002"></field>
+			<field name="customer_id" ref="cmt.customer10"></field>
+			<field name="testingstart">2020-01-10</field>
+			<field name="testingend">2020-01-25</field>
+		</record>
+		<record id="testing8" model="testing.detail">
+			<field name="company_id" ref="cmt.company002"></field>
+			<field name="customer_id" ref="cmt.customer11"></field>
+			<field name="testingstart">2020-01-28</field>
+			<field name="testingend">2020-02-10</field>
+		</record>
+
+
+		<record id="testing101" model="testing.detail">
+			<field name="company_id" ref="cmt.company001"></field>
+			<field name="customer_id" ref="cmt.customer101"></field>
+			<field name="testingstart">2020-01-25</field>
+			<field name="testingend">2020-02-05</field>
+		</record>
+		<record id="testing102" model="testing.detail">
+			<field name="company_id" ref="cmt.company001"></field>
+			<field name="customer_id" ref="cmt.customer102"></field>
+			<field name="testingstart">2020-02-05</field>
+			<field name="testingend">2020-02-20</field>
+		</record>
+		<record id="testing103" model="testing.detail">
+			<field name="company_id" ref="cmt.company001"></field>
+			<field name="customer_id" ref="cmt.customer104"></field>
+			<field name="testingstart">2020-02-01</field>
+			<field name="testingend">2020-02-15</field>
+		</record>
+		<record id="testing104" model="testing.detail">
+			<field name="company_id" ref="cmt.company001"></field>
+			<field name="customer_id" ref="cmt.customer106"></field>
+			<field name="testingstart">2020-02-03</field>
+			<field name="testingend">2020-02-18</field>
+		</record>
+
+
+		<record id="testing201" model="testing.detail">
+			<field name="company_id" ref="cmt.company003"></field>
+			<field name="customer_id" ref="cmt.customer201"></field>
+			<field name="testingstart">2020-01-26</field>
+			<field name="testingend">2020-02-05</field>
+		</record>
+		<record id="testing202" model="testing.detail">
+			<field name="company_id" ref="cmt.company003"></field>
+			<field name="customer_id" ref="cmt.customer202"></field>
+			<field name="testingstart">2020-02-01</field>
+			<field name="testingend">2020-02-15</field>
+		</record>
+		<record id="testing203" model="testing.detail">
+			<field name="company_id" ref="cmt.company003"></field>
+			<field name="customer_id" ref="cmt.customer203"></field>
+			<field name="testingstart">2020-02-05</field>
+			<field name="testingend">2020-02-20</field>
+		</record>
+		<record id="testing204" model="testing.detail">
+			<field name="company_id" ref="cmt.company003"></field>
+			<field name="customer_id" ref="cmt.customer204"></field>
+			<field name="testingstart">2020-01-03</field>
+			<field name="testingend">2020-01-18</field>
+		</record>
+
+
+
+
+	</data>
+</odoo>

@@ -7,7 +7,7 @@
         <field name='arch' type='xml'>
             <tree string='Observation Tree'>
                 <field name='test_id'/>
-                <field name='facilityname'/>
+                <field name='facility_id'/>
                 <field name='soil_result'/>
             </tree>
         </field>
@@ -23,7 +23,7 @@
                         <field name='test_id'/>
                     </group>
                     <group>
-                        <field name='facilityname'/>
+                        <field name='facility_id'/>
                     </group>
                 </group>
                 <notebook>
