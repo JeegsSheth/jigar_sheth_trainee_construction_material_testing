@@ -52,5 +52,16 @@ class BuilderPortal(http.Controller):
 
     @http.route(['/testing'], auth='public', type="http", csrf=False)
     def Builder_Observation(self, **post):
-        test = request.env['testing.detail'].sudo().search([('customer_id.user_id', '=', request.session.uid)])
+        test = request.env['testing.detail'].sudo().search([('customer_id.user_id', '=', request.session.uid), ('state', '!=', 'completed')])
         return request.render('cmt.testing_list', {'test': test, })
+
+    @http.route(['/result'], auth='public', type="http", csrf=False)
+    def Builder_Result(self, **post):
+        test = request.env['testing.observation'].sudo().search([('test_id.customer_id.user_id', '=', request.session.uid), ('test_id.state', '=', 'completed')])
+        return request.render('cmt.result_list', {'res': test, })
+
+    @http.route(['/result/report/<int:obs>'], auth='public', type="http", csrf=False, website=True)
+    def Builder_Result_Report(self, obs=0, **post):
+        test = request.env['testing.observation'].sudo().browse([obs])
+        observe = request.env['testing.result'].sudo().search([('observation_id', '=', obs)])
+        return request.render('cmt.testing_report_portal', {'observe': observe, 'test': test, })

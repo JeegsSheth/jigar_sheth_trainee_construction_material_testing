@@ -2,6 +2,7 @@
 <odoo>
   <data>
 
+
     <record model="ir.ui.view" id="customer_detail_tree_view">
       <field name="name">customer.detail.tree</field>
       <field name="model">customer.detail</field>
@@ -20,22 +21,26 @@
       <field name="name">customer.detail.form</field>
       <field name="model">customer.detail</field>
       <field name="arch" type="xml">
-        <form string="Customer detail Form">
+        <form string="Customer detail Form" edit="false">
           <sheet>
             <group>
-              <field name="name"/>
-              <field name="contact" widget="phone"/>
-              <field name="email" widget="email"/>
-              <field name="address"/>
-              <field name="state"/>
-              <field name="facility_id"/>    
+              <group>
+                <field name="name"/>
+                <field name="contact" widget="phone"/>
+                <field name="email" widget="email"/>
+              </group>
+              <group>
+                <field name="address"/>
+                <field name="state"/>
+                <field name="facility_id"/>    
+              </group>
             </group>
             <group>
               <group>
-                <field name="state"/>
+                <button name="action_cancel" states="pending" string="Cancel Order" type="object" class="btn-danger"/>
               </group>
               <group>
-                <field name="state"/>
+                <button name="action_confirm" states="pending" string="Confirm Order" type="object" class="btn-danger"/>
               </group>
             </group>
           </sheet>
@@ -68,7 +73,6 @@
       <field name="model">customer.detail</field>
       <field name="arch" type="xml">
         <graph string="Customer Graph" type="line">
-          
           <field name="name"/>
           <field name="facility_id"/>
         </graph>
@@ -88,161 +92,125 @@
             </search>
         </field>
     </record>
+
+
+
+
+
     
-     <record model="ir.ui.view" id="testing_detail_tree_view">
-          <field name="name">testing.detail.tree</field>
-          <field name="model">testing.detail</field>
-          <field name="arch" type="xml">
-            <tree string="Lab Testing">
+   <record model="ir.ui.view" id="testing_detail_tree_view">
+      <field name="name">testing.detail.tree</field>
+      <field name="model">testing.detail</field>
+      <field name="arch" type="xml">
+        <tree string="Lab Testing">
+            <field name="customer_id"/>
+            <field name="facility_id"/>
+            <field name="testingstart"/>
+            <field name="testingend"/>
+            <field name="testingdays"/>
+            <field name="state"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="testing_detail_form_view">
+      <field name="name">testing.detail.form</field>
+      <field name="model">testing.detail</field>
+      <field name="arch" type="xml">
+        <form string="Lab Testing Form">
+          <header>
+            <field name="state" widget="statusbar"/>
+          </header>
+          <sheet>
+            <group>
+              <field name="customer_id"/>
+              <field name="facility_id"/>
+              <field name="testingstart"/>
+              <field name="testingend"/>
+              <field name="testingdays"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record id="testing_detail_kanban_view" model="ir.ui.view">
+      <field name="name">testing.detail.kanban</field>
+      <field name="model">testing.detail</field>
+      <field name="arch" type="xml">
+        <kanban default_group_by="state" string="Kanban View" class="o_kanban_dashboard" widget="color">
+          <templates>
+            <t t-name="kanban-box">
+              <div t-attf-class="oe_kanban_content">
+                <!-- <img src="/cmt/static/cardimage/Soil_Testing.jpg" widget="image"/> -->
                 <field name="customer_id"/>
-                
                 <field name="facility_id"/>
                 <field name="testingstart"/>
                 <field name="testingend"/>
-                <field name="testingdays"/>
-                <field name="state"/>
-            </tree>
-          </field>
-        </record>
-
-      <record model="ir.ui.view" id="testing_detail_form_view">
-        <field name="name">testing.detail.form</field>
-        <field name="model">testing.detail</field>
-        <field name="arch" type="xml">
-          <form string="Lab Testing Form">
-                <header>
-                    <field name="state" widget="statusbar"/>
-                </header>
-            <sheet>
-                <group>
-                    <field name="customer_id"/>
-                    
-                    <field name="facility_id"/>
-                    <field name="testingstart"/>
-                    <field name="testingend"/>
-                    <field name="testingdays"/>
-                </group>
-            </sheet>
-          </form>
-        </field>
-      </record>
-
-      <record id="testing_detail_kanban_view" model="ir.ui.view">
-        <field name="name">testing.detail.kanban</field>
-        <field name="model">testing.detail</field>
-        <field name="arch" type="xml">
-            <kanban default_group_by="state" string="Kanban View" class="o_kanban_dashboard" widget="color">
-                <templates>
-                    <t t-name="kanban-box">
-                        <div t-attf-class="oe_kanban_content">
-                            <!-- <img src="/cmt/static/cardimage/Soil_Testing.jpg" widget="image"/> -->
-                            <field name="customer_id"/>
-                            <field name="facility_id"/>
-                            <field name="testingstart"/>
-                            <field name="testingend"/>
-                        </div>
-                    </t>
-                </templates>
-            </kanban>
-        </field>
+              </div>
+            </t>
+          </templates>
+        </kanban>
+      </field>
     </record>
 
-        <record model="ir.ui.view" id="testing_detail_calendar_view">
-          <field name="name">testing.detail.calendar</field>
-          <field name="model">testing.detail</field>
-          <field name="arch" type="xml">
-            <calendar string="Testing Duration" date_start="testingstart" date_stop="testingend" color="facility_id">
-                
-                <field name="customer_id"/>
-                <field name="facility_id"/>  
-                <field name="testingstart"/>
-                <field name="testingend"/>
-            </calendar>
-          </field>
-        </record>
+    <record model="ir.ui.view" id="testing_detail_calendar_view">
+      <field name="name">testing.detail.calendar</field>
+      <field name="model">testing.detail</field>
+      <field name="arch" type="xml">
+        <calendar string="Testing Duration" date_start="testingstart" date_stop="testingend" color="facility_id">
+          <field name="customer_id"/>
+          <field name="facility_id"/>  
+          <field name="testingstart"/>
+          <field name="testingend"/>
+        </calendar>
+      </field>
+    </record>
 
     <record model="ir.ui.view" id="testing_detail_graph_view">
       <field name="name">testing.detail.graph</field>
       <field name="model">testing.detail</field>
       <field name="arch" type="xml">
         <graph string="Testing Graph" type="line">
-         <field name="customer_id"/>  
+          <field name="customer_id"/>  
           <field name="testingstart"/>
           <field name="testingend"/>
         </graph>
       </field>
     </record>
 
-    <!-- <report
-        id="report_status"
-        model="testing.detail"
-        string="Status Report"
-        name="cmt.report_status_view"
-        file="cmt.status"
-        report_type="qweb-pdf" />
-
-    <template id="report_status_view">
-        <t t-call="web.html_container">
-            <t t-foreach="docs" t-as="doc">
-                <t t-call="web.external_layout">
-                  <center>
-                    <div class="page">
-                        <h1>JS Industry</h1><br/><br/>
-                        <table width="30%">
-                          <tr>
-                            <td>Cust Name :- </td>
-                            <td><span t-field="doc.customer_id"/></td>
-                          </tr>
-                          <tr>
-                            <td>Address :- </td>
-                            <td><span t-field="doc.address"/></td>
-                          </tr>
-                          <tr>
-                            <td>Testing Start Date :- </td>
-                            <td><span t-field="doc.testingstart"/></td>
-                          </tr>
-                          <tr>
-                            <td>Testing End Date :- </td>
-                            <td><span t-field="doc.testingend"/></td>
-                          </tr>
-                          <tr>
-                            <td>Testing State :- </td>
-                            <td><span t-field="doc.state"/></td>
-                          </tr>
-                        </table>
-                    </div>
-                  </center>
-                </t>
-            </t>
-        </t>
-    </template> -->
-
-
+    
     <record model="ir.ui.view" id="testing_detail_pivot_view">
-        <field name="name">testing.detail.pivot</field>
-        <field name="model">testing.detail</field>
-        <field name="arch" type="xml">
-            <pivot string="Testing Line">
-                <field name="customer_id" type="row"/>
-                <field name="facility_id" type="col"/>
-                <!-- <field name="state" type="col"/> -->
-                <field name="testingstart" type="col"/>
-                <field name="testingend" type="col"/>
-            </pivot>            
-        </field>
+      <field name="name">testing.detail.pivot</field>
+      <field name="model">testing.detail</field>
+      <field name="arch" type="xml">
+        <pivot string="Testing Line">
+          <field name="customer_id" type="row"/>
+          <field name="facility_id" type="col"/>
+          <!-- <field name="state" type="col"/> -->
+          <field name="testingstart" type="col"/>
+          <field name="testingend" type="col"/>
+        </pivot>            
+      </field>
     </record>
     
     <record model="ir.ui.view" id="reporting_view_dashboard">
-        <field name="name">testing.detail.dashboard</field>
-        <field name="model">testing.detail</field>
-        <field name="mode">primary</field>
-        <field name="arch" type="xml">
-            <dashboard>
-                <view type="graph" ref="testing_detail_graph_view"/>
-                <view type="pivot" ref="testing_detail_pivot_view"/>
-            </dashboard>
-        </field>
+      <field name="name">testing.detail.dashboard</field>
+      <field name="model">testing.detail</field>
+      <field name="mode">primary</field>
+      <field name="arch" type="xml">
+        <dashboard>
+          <view type="graph" ref="testing_detail_graph_view"/>
+          <view type="pivot" ref="testing_detail_pivot_view"/>
+        </dashboard>
+      </field>
     </record>
+
+
+
+
+
+
 
     <record model="ir.ui.view" id="facility_detail_tree_view">
       <field name="name">facility.detail.tree</field>
@@ -271,6 +239,11 @@
     </record>
 
 
+
+
+
+
+
     <record model="ir.actions.act_window" id="customer_detail_action">
       <field name="name">Customer Detail</field>
       <field name="res_model">customer.detail</field>
@@ -296,6 +269,11 @@
     </record>
 
 
+
+
+
+
+
     <menuitem name="CMT" id="cmt_menu_root" web_icon="cmt,static/description/icon3.png"/>
     <menuitem name="Inquiry" id="customer_detail_menu" parent="cmt_menu_root" action="customer_detail_action"/>
     <menuitem name="Testing" id="testing_detail_menu" parent="cmt_menu_root" action="testing_detail_action"/>
@@ -304,6 +282,9 @@
     <menuitem name="Reporting" id="Reporting_menu" parent="cmt_menu_root" action="reporting_action"/>
     <menuitem name="Configuration" id="configuration_menu" parent="cmt_menu_root"/>
     <menuitem name="Facility" id="facility_menu" parent="configuration_menu" action="facility_detail_action"/>
+
+
+
   </data>
 </odoo>
  

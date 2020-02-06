@@ -3,6 +3,15 @@ from odoo.exceptions import ValidationError
 import datetime
 
 
+class FacilityDetail(models.Model):
+    _name = 'facility.detail'
+    _description = 'Facility Detail'
+
+    company_id = field_name_id = fields.Many2one('res.company', required=True, default=lambda self: self.env.company)
+    name = fields.Selection([('soil_test', "Soil Test"), ('concrete_test', "Concrete Test"), ('steel_test', "Steel Test"), ('field_test', "Field Test"), ('cement_lime_mortar_test', "Cement, Lime & Mortar Test"), ('sand_aggregate_fillers_test', "Sand, Aggregate & Fillers Test"), ('rock_test', "Rock Test"), ('bitumen_asphalt_test', "Bitumen & Asphalt Test"), ('geotextile_test', "Geotextile Test"), ('water_test', "Water Testing"), ('brick_block_test', "Brick & Block Test")], string="Laboratory Facility", required=True)
+    price = fields.Integer("Facility Price")
+
+
 class CustomerDetail(models.Model):
     _name = 'customer.detail'
     _description = 'Customer Detail'
@@ -22,14 +31,13 @@ class CustomerDetail(models.Model):
             if cont.contact and len(str(cont.contact)) != 10:
                 raise ValidationError("Your Contact No. +91%s is wrong................................" % cont.contact)
 
+    def action_confirm(self):
+        self.write({'state': "confirm"})
+        return True
 
-class FacilityDetail(models.Model):
-    _name = 'facility.detail'
-    _description = 'Facility Detail'
-
-    company_id = field_name_id = fields.Many2one('res.company', required=True, default=lambda self: self.env.company)
-    name = fields.Selection([('soil_test', "Soil Test"), ('concrete_test', "Concrete Test"), ('steel_test', "Steel Test"), ('field_test', "Field Test"), ('cement_lime_mortar_test', "Cement, Lime & Mortar Test"), ('sand_aggregate_fillers_test', "Sand, Aggregate & Fillers Test"), ('rock_test', "Rock Test"), ('bitumen_asphalt_test', "Bitumen & Asphalt Test"), ('geotextile_test', "Geotextile Test"), ('water_test', "Water Testing"), ('brick_block_test', "Brick & Block Test")], string="Laboratory Facility", required=True)
-    price = fields.Integer("Facility Price")
+    def action_cancel(self):
+        self.write({'state': "cancel"})
+        return True
 
 
 class TestingDetail(models.Model):

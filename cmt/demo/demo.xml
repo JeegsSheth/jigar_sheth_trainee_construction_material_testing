@@ -259,6 +259,7 @@
 
 
 
+
 		<record id="customer1" model="customer.detail">
 			<field name="company_id" ref="cmt.company002"></field>
 			<field name="user_id" ref="cmt.user02"></field>
@@ -548,6 +549,136 @@
 		</record>
 
 
+
+
+
+
+
+		<record id="result1" model="testing.result">
+			<field name="company_id" ref="cmt.company002"></field>
+			<field name="sample_depth">1.00</field>
+			<field name="sample_type">uds</field>
+			<field name="gravel">16</field>
+			<field name="sand">45</field>
+			<field name="silt_clay">39</field>
+			<field name="classification">sm</field>
+			<field name="field_dry_density">1.63</field>
+			<field name="field_moisture_content">10.22</field>
+			<field name="specific_gravity">2.58</field>
+			<field name="cohesion">0.00</field>
+			<field name="angle_of_internal_friction">32.0</field>
+		</record>
+		<record id="result2" model="testing.result">
+			<field name="company_id" ref="cmt.company002"></field>
+			<field name="sample_depth">2.00</field>
+			<field name="sample_type">spt</field>
+			<field name="gravel">5</field>
+			<field name="sand">87</field>
+			<field name="silt_clay">8</field>
+			<field name="classification">sp_sm</field>
+			<field name="angle_of_internal_friction">32.0</field>
+		</record>
+		<record id="result3" model="testing.result">
+			<field name="company_id" ref="cmt.company002"></field>
+			<field name="sample_depth">3.00</field>
+			<field name="sample_type">spt</field>
+			<field name="gravel">17</field>
+			<field name="sand">76</field>
+			<field name="silt_clay">7</field>
+			<field name="classification">sp_sm</field>
+			<field name="angle_of_internal_friction">32.0</field>
+		</record>
+		<record id="result4" model="testing.result">
+			<field name="company_id" ref="cmt.company002"></field>
+			<field name="sample_depth">4.00</field>
+			<field name="sample_type">uds</field>
+			<field name="gravel">8</field>
+			<field name="sand">86</field>
+			<field name="silt_clay">6</field>
+			<field name="classification">sp_sm</field>
+			<field name="field_dry_density">1.65</field>
+			<field name="field_moisture_content">10.51</field>
+			<field name="specific_gravity">2.58</field>
+			<field name="cohesion">0.00</field>
+			<field name="angle_of_internal_friction">32.0</field>
+		</record>
+		<record id="result5" model="testing.result">
+			<field name="company_id" ref="cmt.company002"></field>
+			<field name="sample_depth">5.00</field>
+			<field name="sample_type">spt</field>
+			<field name="gravel">3</field>
+			<field name="sand">91</field>
+			<field name="silt_clay">6</field>
+			<field name="classification">sp_sm</field>
+			<field name="angle_of_internal_friction">32.0</field>
+		</record>
+
+
+		<record id="result11" model="testing.result">
+			<field name="company_id" ref="cmt.company002"></field>
+			<field name="sample_depth">1.00</field>
+			<field name="sample_type">uds</field>
+			<field name="gravel">18</field>
+			<field name="sand">45</field>
+			<field name="silt_clay">37</field>
+			<field name="classification">sm</field>
+			<field name="field_dry_density">1.60</field>
+			<field name="field_moisture_content">11.52</field>
+			<field name="specific_gravity">2.85</field>
+			<field name="cohesion">0.00</field>
+			<field name="angle_of_internal_friction">45.0</field>
+		</record>
+		<record id="result12" model="testing.result">
+			<field name="company_id" ref="cmt.company002"></field>
+			<field name="sample_depth">2.00</field>
+			<field name="sample_type">spt</field>
+			<field name="gravel">8</field>
+			<field name="sand">80</field>
+			<field name="silt_clay">12</field>
+			<field name="classification">sp_sm</field>
+			<field name="angle_of_internal_friction">45.0</field>
+		</record>
+		<record id="result13" model="testing.result">
+			<field name="company_id" ref="cmt.company002"></field>
+			<field name="sample_depth">3.00</field>
+			<field name="sample_type">uds</field>
+			<field name="gravel">6</field>
+			<field name="sand">84</field>
+			<field name="silt_clay">10</field>
+			<field name="classification">sp_sm</field>
+			<field name="field_dry_density">1.75</field>
+			<field name="field_moisture_content">11.92</field>
+			<field name="specific_gravity">2.95</field>
+			<field name="cohesion">0.00</field>
+			<field name="angle_of_internal_friction">45.0</field>
+		</record>
+		<record id="result14" model="testing.result">
+			<field name="company_id" ref="cmt.company002"></field>
+			<field name="sample_depth">4.00</field>
+			<field name="sample_type">spt</field>
+			<field name="gravel">4</field>
+			<field name="sand">92</field>
+			<field name="silt_clay">4</field>
+			<field name="classification">sp_sm</field>
+			<field name="angle_of_internal_friction">45.0</field>
+		</record>
+
+
+
+
+
+
+
+		<record id="observation1" model="testing.observation">
+			<field name="company_id" ref="cmt.company002"></field>
+			<field name="test_id" ref="cmt.testing1"></field>
+			<field name="soil_result" eval="[(6,0 ,[ref('cmt.result1'), ref('cmt.result2'), ref('cmt.result3'), ref('cmt.result4'), ref('cmt.result5')])]" />
+		</record>
+		<record id="observation2" model="testing.observation">
+			<field name="company_id" ref="cmt.company002"></field>
+			<field name="test_id" ref="cmt.testing4"></field>
+			<field name="soil_result" eval="[(6,0 ,[ref('cmt.result11'), ref('cmt.result12'), ref('cmt.result13'), ref('cmt.result14')])]" />
+		</record>
 
 
 	</data>
