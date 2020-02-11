@@ -3,10 +3,12 @@ from odoo.http import request
 
 
 class Registration(http.Controller):
-    @http.route('/reg/', auth='public', type="http", csrf=False)
+    @http.route(['/reg/', '/web/signup'], auth='public', type="http", csrf=False)
     def custmoer_register(self, **kw):
         currency = http.request.env['res.currency'].sudo().search([])
-        return http.request.render('cmt.reg_user', {'currency': currency})
+        country = http.request.env['res.country'].sudo().search([('name', "=", "India")])
+        state = http.request.env['res.country.state'].sudo().search([('country_id', "=", country.id)])
+        return http.request.render('cmt.reg_user', {'currency': currency, 'state': state})
 
     @http.route('/reg/form/<string:user_type>', auth='public', type="http", csrf=False)
     def custmoer_register_form(self, user_type=None, **post):
@@ -15,9 +17,17 @@ class Registration(http.Controller):
 
             currency_name = post.get('currency')
             currency = request.env['res.currency'].sudo().search([('name', '=', currency_name)], limit=1)
+            state = http.request.env['res.country.state'].sudo().search([('name', "=", post.get('state'))], limit=1)
             partner = request.env['res.partner'].sudo().create({
                 'name': post.get('username'),
-                'email': post.get('email')
+                'email': post.get('email'),
+                'mobile': post.get('labcontact'),
+                'street': post.get('addressline1'),
+                'street2': post.get('addressline2'),
+                'city': post.get('city'),
+                'state_id': state.id,
+                'zip': post.get('pincode'),
+                'country_id': state.country_id.id
             })
             company = request.env['res.company'].sudo().create({
                 'name': post.get('company'),

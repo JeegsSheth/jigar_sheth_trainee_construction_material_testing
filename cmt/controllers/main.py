@@ -15,7 +15,7 @@ class Home(Home):
 
 
 class BuilderPortal(http.Controller):
-    @http.route(['/builder/<string:findlab>', '/builder'], auth='public', type="http", csrf=False)
+    @http.route(['/builder/<string:findlab>', '/builder', '/my/home', '/my'], auth='public', type="http", csrf=False)
     def Builder_Index(self, findlab=None, **post):
         if findlab:
             lab_fac = request.env['facility.detail'].sudo().search([('name', 'in', [post.get('usr_facility')])])
@@ -23,13 +23,13 @@ class BuilderPortal(http.Controller):
             lab_fac = request.env['facility.detail'].sudo().search([])
         return request.render('cmt.index_user', {'facilities': lab_fac, })
 
-    @http.route(['/builder/inquiry/<int:lab_fac>', '/builder/inquiry/'], auth='public', type="http", csrf=False)
+    @http.route(['/builder/inquiry/<int:lab_fac>'], auth='public', type="http", csrf=False)
     def Builder_Inquiry(self, lab_fac=0, **post):
         # print("\n\n\n\n\n\n*****************", lab_fac, "**************************\n\n\n\n\n\n")
         lab_inq = request.env['facility.detail'].sudo().search([('id', '=', lab_fac)])
         return request.render('cmt.inquiry_builder', {'lab_inq': lab_inq, })
 
-    @http.route(['/builder/inquirysubmit/<int:lab_fac>', '/builder/inquirysubmit'], auth='public', type="http", website=True, csrf=False)
+    @http.route(['/builder/inquirysubmit/<int:lab_fac>'], auth='public', type="http", website=True, csrf=False)
     def Builder_Inquiry_Submit(self, lab_fac=0, **post):
         lab_inq = request.env['facility.detail'].sudo().search([('id', '=', lab_fac)])
         usr = request.env['res.users'].sudo().browse(request.session.uid)

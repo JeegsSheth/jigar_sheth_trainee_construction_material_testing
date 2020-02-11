@@ -31,6 +31,11 @@
                         <field name='soil_result'/>
                     </page>
                 </notebook>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
             </form>
         </field>
     </record>
@@ -93,6 +98,11 @@
                                 <field name='angle_of_internal_friction'/>
                             </group>
                         </group>
+                        <div class="oe_chatter">
+                            <field name="message_follower_ids" widget="mail_followers"/>
+                            <field name="activity_ids" widget="mail_activity"/>
+                            <field name="message_ids" widget="mail_thread"/>
+                        </div>
                 </sheet>
             </form>
         </field>
@@ -102,18 +112,16 @@
         <field name='name'>testing.result.graph</field>
         <field name='model'>testing.result</field>
         <field name='arch' type='xml'>
-            <graph string="Test Graph">
-                <field name='observation_id' type="row"/>
+            <graph string="Test Graph" stacked="False">
                 <field name='sample_depth' type="row"/>
-                <field name='gravel' type="measure"/>
+                <field name='observation_id' type="row"/>
                 <field name='sand' type="measure"/>
-                <field name='silt_clay' type="measure"/>
             </graph>
         </field>
     </record>
 
-    <record model='ir.ui.view' id='testing_result_graph_view'>
-        <field name='name'>testing.result.graph</field>
+    <record model='ir.ui.view' id='testing_result_search_view'>
+        <field name='name'>testing.result.search</field>
         <field name='model'>testing.result</field>
         <field name='arch' type='xml'>
             <search>
@@ -131,7 +139,7 @@
     <record model="ir.actions.act_window" id="testing_result_action">
       <field name="name">Result</field>
       <field name="res_model">testing.result</field>
-      <field name="view_mode">tree,form,graph</field>
+      <field name="view_mode">tree,form,graph,search</field>
     </record>
 </data>
 </odoo>

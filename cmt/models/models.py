@@ -5,6 +5,7 @@ import datetime
 
 class FacilityDetail(models.Model):
     _name = 'facility.detail'
+    _inherit = ['mail.thread', 'mail.activity.mixin']
     _description = 'Facility Detail'
 
     company_id = field_name_id = fields.Many2one('res.company', required=True, default=lambda self: self.env.company)
@@ -14,6 +15,7 @@ class FacilityDetail(models.Model):
 
 class CustomerDetail(models.Model):
     _name = 'customer.detail'
+    _inherit = ['mail.thread', 'mail.activity.mixin']
     _description = 'Customer Detail'
 
     company_id = field_name_id = fields.Many2one('res.company', required=True, default=lambda self: self.env.company)
@@ -42,6 +44,7 @@ class CustomerDetail(models.Model):
 
 class TestingDetail(models.Model):
     _name = 'testing.detail'
+    _inherit = ['mail.thread', 'mail.activity.mixin']
     _description = 'Testing Detail'
     _rec_name = 'customer_id'
 
@@ -53,6 +56,8 @@ class TestingDetail(models.Model):
     testingdays = fields.Integer("Testing Days", compute="_compute_value_day")
     testingdaysleft = fields.Integer("Testing Days Left", compute="_compute_value_day")
     state = fields.Selection([("todo", "To Do"), ("inprogress", "In Progress"), ("completed", "Completed")], string="State of Testing", default="todo", compute="_compute_value_day", store=True)
+    city = fields.Char('City')
+    state_id = fields.Many2one("res.country.state", string='State', domain=[('country_id', "=", 104)])
 
     @api.depends('testingstart', 'testingend')
     def _compute_value_day(self):
@@ -78,6 +83,7 @@ class TestingDetail(models.Model):
 
 class Observation(models.Model):
     _name = "testing.observation"
+    _inherit = ['mail.thread', 'mail.activity.mixin']
     _description = "Observation"
     _rec_name = 'test_id'
 
@@ -89,6 +95,7 @@ class Observation(models.Model):
 
 class TestResult(models.Model):
     _name = "testing.result"
+    _inherit = ['mail.thread', 'mail.activity.mixin']
     _description = "Test Result"
     _rec_name = "sample_depth"
 

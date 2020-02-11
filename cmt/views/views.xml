@@ -43,6 +43,11 @@
                 <button name="action_confirm" states="pending" string="Confirm Order" type="object" class="btn-danger"/>
               </group>
             </group>
+            <div class="oe_chatter">
+                <field name="message_follower_ids" widget="mail_followers"/>
+                <field name="activity_ids" widget="mail_activity"/>
+                <field name="message_ids" widget="mail_thread"/>
+            </div>
           </sheet>
         </form>
       </field>
@@ -61,6 +66,7 @@
                   <field name="contact" widget="phone"/>
                   <field name="email" widget="email"/>
                   <field name="address"/>
+                  <field name="state"/>
                 </div>
               </t>
             </templates>
@@ -128,7 +134,14 @@
               <field name="testingstart"/>
               <field name="testingend"/>
               <field name="testingdays"/>
+              <field name="city"/>
+              <field name="state_id"/>
             </group>
+            <div class="oe_chatter">
+                <field name="message_follower_ids" widget="mail_followers"/>
+                <field name="activity_ids" widget="mail_activity"/>
+                <field name="message_ids" widget="mail_thread"/>
+            </div>
           </sheet>
         </form>
       </field>
@@ -233,6 +246,11 @@
               <field name="name"/>
               <field name="price"/>
             </group>
+            <div class="oe_chatter">
+                <field name="message_follower_ids" widget="mail_followers"/>
+                <field name="activity_ids" widget="mail_activity"/>
+                <field name="message_ids" widget="mail_thread"/>
+            </div>
           </sheet>
         </form>
       </field>
